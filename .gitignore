@@ -27,6 +27,4 @@
 *.out
 *.app
 
-# Eclipse project
-.cproject
-.project
+Debug/*
