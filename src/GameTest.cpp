@@ -6,8 +6,14 @@
  */
 
 #include "Game.h"
+#include "DecksStub.h"
+#include "gtest/gtest.h"
 
 using namespace std;
 
 
+// Test Game with stubbed decks
+TEST(GameTest, TestGameWithStubbedDeck) {
+    Game game(new DecksStub(new vector<Card*>));
+}
 

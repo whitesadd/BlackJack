@@ -6,7 +6,7 @@
  */
 
 #ifndef DECKS_H_
-#define DECKs_H_
+#define DECKS_H_
 
 using namespace std;
 
@@ -24,6 +24,5 @@ protected:
     vector<Card*> _stack;
 
 };
-
 
 #endif /* DECKS_H_ */
