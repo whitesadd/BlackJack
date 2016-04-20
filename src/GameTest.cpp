@@ -7,6 +7,7 @@
 
 #include "Game.h"
 
-namespace std {
+using namespace std;
 
-} /* namespace std */
+
+

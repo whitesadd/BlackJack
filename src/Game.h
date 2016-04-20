@@ -16,12 +16,13 @@ using namespace std;
 class Game {
 public:
     Game();
+    Game(Decks*);
     virtual ~Game();
     void run();
 
 private:
 
-    Decks _deck;
+    Decks* _deck_p;
     Hand _dealersHand;
     Hand _playersHand;
 

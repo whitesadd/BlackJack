@@ -15,13 +15,14 @@ using namespace std;
 
 class Decks {
 public:
-    Decks(int noOfDecks);
     virtual ~Decks();
     unsigned int size();
     Card* drawCard();
 
-private:
-    vector<Card *> stack;
+protected:
+    Decks();
+    vector<Card*> _stack;
+
 };
 
 

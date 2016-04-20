@@ -20,6 +20,8 @@ int main(int argc, char **argv) {
     int unitTestResult = RUN_ALL_TESTS();
     if (unitTestResult != 0) return unitTestResult;
 
+    /*
     cout << endl << "!!!!Now, let's play Black Jack!!!!" << endl << endl;
     Game().run();
+    */
 }

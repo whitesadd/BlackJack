@@ -10,7 +10,9 @@
 
 using namespace std;
 
-Game::Game() : _deck(4) {}
+Game::Game() {}
+
+Game::Game(Decks* decks_p) : _deck_p(decks_p) {}
 
 Game::~Game() {}
 
@@ -33,7 +35,7 @@ void Game::dealCardToDealer(bool facingUp) {
 }
 
 void Game::dealCard(Hand* hand_p, bool facingUp) {
-    Card* card_p = _deck.drawCard();
+    Card* card_p = _deck_p->drawCard();
     if ((card_p->isFacingUp() && !facingUp) ||
         (!card_p->isFacingUp() && facingUp)) {
         card_p->flip();
@@ -46,3 +48,4 @@ void Game::printGame() {
     cout << "Player: " << _playersHand.getUnicode() << endl;
     cout << endl;
 }
+
