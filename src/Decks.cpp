@@ -27,7 +27,7 @@ Card* Decks::drawCard() {
     if (_stack.empty()) {
         return NULL;
     }
-    Card* card_p = _stack.back();
-    _stack.pop_back();
+    Card* card_p = _stack.front();
+    _stack.erase(_stack.begin());
     return card_p;
 }
