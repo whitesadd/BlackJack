@@ -54,7 +54,27 @@ void Hand::addCardValues(Card* newCard_p) {
     _handValues_p->unique();
 }
 
-
 list<unsigned short> const * Hand::getValues() {
     return _handValues_p;
+}
+
+bool Hand::isBusted() {
+    return (_handValues_p->front() > 21);
+}
+
+unsigned short Hand::getSoftValue() {
+    return _handValues_p->front();
+}
+
+unsigned short Hand::getHardValue() {
+    if (isBusted()) {
+        return _handValues_p->front();
+    }
+    list<unsigned short>::iterator it = _handValues_p->end();
+    while (true) {
+        if (*it <= 21) {
+            return *it;
+        }
+        it--;
+    }
 }

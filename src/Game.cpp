@@ -48,7 +48,13 @@ void Game::dealCard(Hand* hand_p, bool facingUp) {
     }
     hand_p->addCard(card_p);
 }
+/*
+void Game::dealCardToPlayerUntilSoft(unsigned short limit) {
+    dealCardUntilSoft(&_playersHand, limit);
+}
 
+void Game::dealCardUntilSoft(Hand* hand_p, unsigned short limit){}
+*/
 void Game::printGame() {
     cout << endl;
     cout << "Dealer: " << _dealersHand.getUnicode() << endl;

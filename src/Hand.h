@@ -21,6 +21,9 @@ public:
     void addCard(Card* card_p);
     string getUnicode();
     list<unsigned short> const * getValues();
+    unsigned short getSoftValue();
+    unsigned short getHardValue();
+    bool isBusted();
 
     static const unsigned short HIDDEN_VALUE = USHRT_MAX;
 
