@@ -19,7 +19,8 @@ public:
     Hand();
     ~Hand();
     void addCard(Card* card_p);
-    string getUnicode();
+    void reveal();
+    const string getUnicode();
     list<unsigned short> const * getValues();
     unsigned short getSoftValue();
     unsigned short getHardValue();
@@ -28,9 +29,7 @@ public:
     static const unsigned short HIDDEN_VALUE = USHRT_MAX;
 
 private:
-    string _unicodeStr;
     list<unsigned short>* _handValues_p;
-    void appendCardUnicodeStr(Card* newCard_p);
     void addCardValues(Card* newCard_p);
 
 };

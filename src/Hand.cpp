@@ -13,7 +13,7 @@
 
 using namespace std;
 
-Hand::Hand() : _unicodeStr("") {
+Hand::Hand() {
     _handValues_p = new list<unsigned short>(1,0);
 }
 
@@ -23,17 +23,33 @@ Hand::~Hand() {
 
 void Hand::addCard(Card* card_p) {
     this->push_back(card_p);
-    appendCardUnicodeStr(card_p);
     addCardValues(card_p);
 }
 
-void Hand::appendCardUnicodeStr(Card* newCard_p) {
-    if (this->size() > 1) _unicodeStr += UNICODE_SPACE_STR;
-    _unicodeStr += newCard_p->getUnicodeString();
+void Hand::reveal() {
+    Hand::iterator it = begin();
+    while (it != end()) {
+        if (!(*it)->isFacingUp()) {
+            (*it)->flip();
+        }
+        it++;
+    }
 }
 
-string Hand::getUnicode() {
-    return _unicodeStr;
+
+const string Hand::getUnicode() {
+    string unicodeStr = "";
+    if (size() == 0) return unicodeStr;
+
+    Hand::iterator card_pp = begin();
+    unicodeStr += (*card_pp)->getUnicodeString();
+    card_pp++;
+    while (card_pp != end()) {
+        unicodeStr += UNICODE_SPACE_STR;
+        unicodeStr += (*card_pp)->getUnicodeString();
+        card_pp++;
+    }
+    return unicodeStr;
 }
 
 void Hand::addCardValues(Card* newCard_p) {
@@ -71,6 +87,7 @@ unsigned short Hand::getHardValue() {
         return _handValues_p->front();
     }
     list<unsigned short>::iterator it = _handValues_p->end();
+    it--;
     while (true) {
         if (*it <= 21) {
             return *it;

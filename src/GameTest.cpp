@@ -31,6 +31,9 @@ TEST_F(GameTest, TestGameWithStubbedDeck) {
     cards_p->push_back(new Card(Card::JACK, Card::CLUBS)); // card to Dealer
     cards_p->push_back(new Card(Card::KING, Card::HEARTS)); // card to Player
     cards_p->push_back(new Card(Card::SEVEN, Card::DIAMONDS)); // card to Dealer
+    cards_p->push_back(new Card(Card::THREE, Card::DIAMONDS)); // card to Player
+    cards_p->push_back(new Card(Card::THREE, Card::CLUBS)); // card to Player, Stop.
+    cards_p->push_back(new Card(Card::FOUR, Card::SPADES)); // card to Dealer, House Wins!
     Game game(new DecksStub(cards_p));
     game.run();
 }

@@ -26,7 +26,9 @@ TEST(HandTest, AddCardToHand) {
     hand.addCard(thirdCard_p);
     ASSERT_EQ(3, hand.size());
     ASSERT_EQ(0, hand.getUnicode().compare("\u0020\u0041\u2660\u0020\u0020\u003F\u003F\u0020\u0031\u0030\u2663"));
-    cout << endl << "Hand: " << hand.getUnicode() << endl << endl;
+    hand.reveal();
+    ASSERT_EQ(3, hand.size());
+    ASSERT_EQ(0, hand.getUnicode().compare("\u0020\u0041\u2660\u0020\u0020\u0041\u2660\u0020\u0031\u0030\u2663"));
     delete firstCard_p;
     delete secondCard_p;
     delete thirdCard_p;

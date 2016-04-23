@@ -26,9 +26,13 @@ void Game::run() {
     dealCardToDealer(Card::FACING_DOWN);
     dealCardToPlayer();
     dealCardToDealer();
-
     printGame();
 
+    dealCardToPlayerUntilSoft(18);
+    printGame();
+
+    revealDealersHand();
+    printGame();
 }
 
 void Game::dealCardToPlayer(bool facingUp) {
@@ -57,13 +61,14 @@ void Game::dealCardToDealerUntilSoft(unsigned short limit) {
     dealCardUntilSoft(&_dealersHand, limit);
 }
 
-void Game::dealCardUntilSoft(Hand* hand_p, unsigned short limit){
-    cout << "dealCardUntilSoft" << endl;
-    cout << "Hand soft value: " << hand_p->getSoftValue() << endl;
+void Game::dealCardUntilSoft(Hand* hand_p, unsigned short limit) {
     while (hand_p->getSoftValue() < limit) {
         dealCard(hand_p);
-        cout << "Hand soft value: " << hand_p->getSoftValue() << endl;
     }
+}
+
+void  Game::revealDealersHand() {
+
 }
 
 void Game::printGame() {
