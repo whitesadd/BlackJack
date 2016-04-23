@@ -15,7 +15,7 @@ using namespace std;
 class DecksStub : public Decks {
 
 public:
-    DecksStub(vector<Card*>* decks_p);
+    DecksStub(vector<Card*>* stack_p);
     virtual ~DecksStub();
 };
 

@@ -11,9 +11,17 @@
 
 using namespace std;
 
-
 // Test Game with stubbed decks
 TEST(GameTest, TestGameWithStubbedDeck) {
-    Game game(new DecksStub(new vector<Card*>));
+    vector<Card*>* cards_p = new(vector<Card*>);
+    cards_p->push_back(new Card(Card::ACE, Card::SPADES));
+    cards_p->push_back(new Card(Card::JACK, Card::CLUBS));
+    cards_p->push_back(new Card(Card::KING, Card::HEARTS));
+    cards_p->push_back(new Card(Card::SEVEN, Card::DIAMONDS));
+    Decks* deck_p = new DecksStub(cards_p);
+    Game game(deck_p);
+    game.run();
+    delete deck_p;
+    delete cards_p;
 }
 

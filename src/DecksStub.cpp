@@ -9,8 +9,8 @@
 
 using namespace std;
 
-DecksStub::DecksStub(vector<Card*>* decks_p) {
-    // TODO
+DecksStub::DecksStub(vector<Card*>* stack_p) {
+    _stack = *stack_p;
 }
 
 DecksStub::~DecksStub() {}

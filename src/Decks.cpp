@@ -10,7 +10,7 @@
 
 using namespace std;
 
-Decks::Decks() {}
+Decks::Decks() : _stack(0) {}
 
 Decks::~Decks() {
     while (!_stack.empty()) {

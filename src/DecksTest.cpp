@@ -6,6 +6,7 @@
  */
 
 #include "DecksImp.h"
+#include "DecksStub.h"
 #include "gtest/gtest.h"
 
 using namespace std;
@@ -30,7 +31,7 @@ TEST(DecksTest, CheckSize) {
 }
 
 // Test drawCard()
-TEST(DecksTest, CheckDrawCardFromFoureDecks) {
+TEST(DecksTest, CheckDrawCardFromFourDecks) {
     Decks* decks_p = new DecksImp(4);
     cout << endl;
     for (int i = 0; i < 52 * 4; i++) {

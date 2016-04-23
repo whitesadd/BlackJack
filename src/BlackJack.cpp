@@ -17,11 +17,10 @@ int main(int argc, char **argv) {
   ::testing::InitGoogleTest(&argc, argv);
 
     cout << endl << "!!!Welcome to Black Jack TDD!!!" << endl << endl;
-    int unitTestResult = RUN_ALL_TESTS();
-    if (unitTestResult != 0) return unitTestResult;
+    if (RUN_ALL_TESTS() !=0) {
+        return -1;
+    }
 
-    /*
-    cout << endl << "!!!!Now, let's play Black Jack!!!!" << endl << endl;
+    cout << endl << "!!!!Now, let's play Black Jack!!!!" << endl;
     Game().run();
-    */
 }
