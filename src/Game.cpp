@@ -16,7 +16,9 @@ Game::Game() : _deck_p(new DecksImp(4)) {}
 
 Game::Game(Decks* decks_p) : _deck_p(decks_p) {}
 
-Game::~Game() {}
+Game::~Game() {
+    delete _deck_p;
+}
 
 void Game::run() {
 
@@ -46,6 +48,7 @@ void Game::dealCard(Hand* hand_p, bool facingUp) {
     }
     hand_p->addCard(card_p);
 }
+
 void Game::printGame() {
     cout << endl;
     cout << "Dealer: " << _dealersHand.getUnicode() << endl;

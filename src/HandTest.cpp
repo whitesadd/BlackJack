@@ -32,7 +32,7 @@ TEST(HandTest, AddCardToHand) {
     delete thirdCard_p;
 }
 
-TEST(HandTest, EvalHandValues) {
+TEST(HandTest, EvalSingleHandValues) {
     Hand hand;
     list<unsigned short> const * handValues_p;
     handValues_p = hand.getValues();
@@ -50,9 +50,31 @@ TEST(HandTest, EvalHandValues) {
     handValues_p = hand.getValues();
     ASSERT_EQ(1, handValues_p->size());
     ASSERT_EQ(30, handValues_p->front());
+}
+
+
+TEST(HandTest, EvalDoubleAceValues) {
+    Hand hand;
+    list<unsigned short> const * handValues_p;
+    list<unsigned short>::const_iterator it;
+
+    handValues_p = hand.getValues();
+    ASSERT_EQ(1, handValues_p->size());
+    ASSERT_EQ(0, handValues_p->front());
+
     hand.addCard(new Card(Card::ACE, Card::CLUBS));
     handValues_p = hand.getValues();
     ASSERT_EQ(2, handValues_p->size());
-    ASSERT_EQ(31, handValues_p->front());
-}
+    ASSERT_EQ(1, handValues_p->front());
+    ASSERT_EQ(11, handValues_p->back());
 
+    hand.addCard(new Card(Card::ACE, Card::CLUBS));
+    handValues_p = hand.getValues();
+    ASSERT_EQ(3, handValues_p->size());
+    it = handValues_p->begin();
+    ASSERT_EQ(2, *it);
+    it++;
+    ASSERT_EQ(12, *it);
+    it++;
+    ASSERT_EQ(22, *it);
+}

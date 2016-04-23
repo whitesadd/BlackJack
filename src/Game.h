@@ -10,6 +10,7 @@
 
 #include "decks.h"
 #include "Hand.h"
+#include "gtest/gtest.h"
 
 using namespace std;
 
@@ -21,6 +22,8 @@ public:
     void run();
 
 private:
+
+    FRIEND_TEST(GameTest, CheckDealUntilStop);
 
     Decks* _deck_p;
     Hand _dealersHand;
