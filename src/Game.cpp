@@ -33,6 +33,9 @@ void Game::run() {
 
     revealDealersHand();
     printGame();
+
+    dealCardToDealerUntilSoft(17);
+    printGame();
 }
 
 void Game::dealCardToPlayer(bool facingUp) {
@@ -68,7 +71,7 @@ void Game::dealCardUntilSoft(Hand* hand_p, unsigned short limit) {
 }
 
 void  Game::revealDealersHand() {
-
+    _dealersHand.reveal();
 }
 
 void Game::printGame() {
