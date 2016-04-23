@@ -48,13 +48,24 @@ void Game::dealCard(Hand* hand_p, bool facingUp) {
     }
     hand_p->addCard(card_p);
 }
-/*
+
 void Game::dealCardToPlayerUntilSoft(unsigned short limit) {
     dealCardUntilSoft(&_playersHand, limit);
 }
 
-void Game::dealCardUntilSoft(Hand* hand_p, unsigned short limit){}
-*/
+void Game::dealCardToDealerUntilSoft(unsigned short limit) {
+    dealCardUntilSoft(&_dealersHand, limit);
+}
+
+void Game::dealCardUntilSoft(Hand* hand_p, unsigned short limit){
+    cout << "dealCardUntilSoft" << endl;
+    cout << "Hand soft value: " << hand_p->getSoftValue() << endl;
+    while (hand_p->getSoftValue() < limit) {
+        dealCard(hand_p);
+        cout << "Hand soft value: " << hand_p->getSoftValue() << endl;
+    }
+}
+
 void Game::printGame() {
     cout << endl;
     cout << "Dealer: " << _dealersHand.getUnicode() << endl;

@@ -23,7 +23,8 @@ public:
 
 private:
 
-    FRIEND_TEST(GameTest, CheckDealUntilSoftLimit);
+    FRIEND_TEST(GameTest, CheckDealUntilSoftLimitWithoutAce);
+    FRIEND_TEST(GameTest, CheckDealUntilSoftLimitWithAce);
 
     Decks* _deck_p;
     Hand _dealersHand;
@@ -31,10 +32,10 @@ private:
 
     void dealCardToPlayer(bool facingUp = Card::FACING_UP);
     void dealCardToDealer(bool facingUp = Card::FACING_UP);
-    // void dealCardToPlayerUntilSoft(unsigned short limit);
-    // void dealCardToDealerUntilSoft(unsigned short limit);
-    // void dealCardUntilSoft(Hand* hand_p, unsigned short limit);
-    void dealCard(Hand* hand_p, bool facingUp);
+    void dealCardToPlayerUntilSoft(unsigned short limit);
+    void dealCardToDealerUntilSoft(unsigned short limit);
+    void dealCardUntilSoft(Hand* hand_p, unsigned short limit);
+    void dealCard(Hand* hand_p, bool facingUp = Card::FACING_UP);
     void printGame();
 };
 
