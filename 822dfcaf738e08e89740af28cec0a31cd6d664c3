@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "baa041b7_29fb07c3",
+        "filename": "src/Game.cpp",
+        "patchSetId": 1
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 1008231
+      },
+      "writtenOn": "2016-04-29T17:38:31Z",
+      "side": 0,
+      "message": "Test comment",
+      "revId": "822dfcaf738e08e89740af28cec0a31cd6d664c3",
+      "serverId": "d5d70762-12d0-45a1-890d-524b12d3f735",
+      "unresolved": false
+    }
+  ]
+}
