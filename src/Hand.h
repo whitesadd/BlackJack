@@ -22,8 +22,7 @@ public:
     void reveal();
     const string getUnicode();
     list<unsigned short> const * getValues();
-    unsigned short getSoftValue();
-    unsigned short getHardValue();
+    unsigned short getValue();
     bool isBusted();
 
     static const unsigned short HIDDEN_VALUE = USHRT_MAX;

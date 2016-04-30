@@ -81,43 +81,35 @@ TEST(HandTest, EvalDoubleAceValues) {
     ASSERT_EQ(22, *it);
 }
 
-TEST(HandTest, CheckBustedSoftHardWithoutAce) {
+TEST(HandTest, CheckBustedAndValueWithoutAce) {
     Hand hand;
     hand.addCard(new Card(Card::TWO, Card::CLUBS));
     ASSERT_FALSE(hand.isBusted());
-    ASSERT_EQ(2, hand.getSoftValue());
-    ASSERT_EQ(2, hand.getHardValue());
+    ASSERT_EQ(2, hand.getValue());
     hand.addCard(new Card(Card::KING, Card::DIAMONDS));
     ASSERT_FALSE(hand.isBusted());
-    ASSERT_EQ(12, hand.getSoftValue());
-    ASSERT_EQ(12, hand.getHardValue());
+    ASSERT_EQ(12, hand.getValue());
     hand.addCard(new Card(Card::SEVEN, Card::DIAMONDS));
     ASSERT_FALSE(hand.isBusted());
-    ASSERT_EQ(19, hand.getSoftValue());
-    ASSERT_EQ(19, hand.getHardValue());
+    ASSERT_EQ(19, hand.getValue());
     hand.addCard(new Card(Card::FOUR, Card::SPADES));
     ASSERT_TRUE(hand.isBusted());
-    ASSERT_EQ(23, hand.getSoftValue());
-    ASSERT_EQ(23, hand.getHardValue());
+    ASSERT_EQ(23, hand.getValue());
 }
 
-TEST(HandTest, CheckBustedSoftHardWithtAce) {
+TEST(HandTest, CheckBustedAndValueWithtAce) {
     Hand hand;
     hand.addCard(new Card(Card::ACE, Card::CLUBS));
     ASSERT_FALSE(hand.isBusted());
-    ASSERT_EQ(1, hand.getSoftValue());
-    ASSERT_EQ(11, hand.getHardValue());
+    ASSERT_EQ(11, hand.getValue());
     hand.addCard(new Card(Card::KING, Card::DIAMONDS));
     ASSERT_FALSE(hand.isBusted());
-    ASSERT_EQ(11, hand.getSoftValue());
-    ASSERT_EQ(21, hand.getHardValue());
+    ASSERT_EQ(21, hand.getValue());
     hand.addCard(new Card(Card::SEVEN, Card::DIAMONDS));
     ASSERT_FALSE(hand.isBusted());
-    ASSERT_EQ(18, hand.getSoftValue());
-    ASSERT_EQ(18, hand.getHardValue());
+    ASSERT_EQ(18, hand.getValue());
     hand.addCard(new Card(Card::FOUR, Card::SPADES));
     ASSERT_TRUE(hand.isBusted());
-    ASSERT_EQ(22, hand.getSoftValue());
-    ASSERT_EQ(22, hand.getHardValue());
+    ASSERT_EQ(22, hand.getValue());
 }
 

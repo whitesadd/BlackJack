@@ -28,15 +28,21 @@ void Game::run() {
     dealCardToDealer();
     printGame();
 
-    dealCardToPlayerUntilSoft(18);
+    dealCardToPlayerUntilValue(18);
     printGame();
+
+    if (_playersHand.isBusted()) return;
 
     revealDealersHand();
     printGame();
 
-    dealCardToDealerUntilSoft(17);
+    dealCardToDealerUntilValue(17);
     printGame();
 }
+
+bool Game::houseWins() {return true;}
+bool Game::playerWins() {return true;}
+
 
 void Game::dealCardToPlayer(bool facingUp) {
     dealCard(&_playersHand, facingUp);
@@ -56,16 +62,17 @@ void Game::dealCard(Hand* hand_p, bool facingUp) {
     hand_p->addCard(card_p);
 }
 
-void Game::dealCardToPlayerUntilSoft(unsigned short limit) {
-    dealCardUntilSoft(&_playersHand, limit);
+
+void Game::dealCardToPlayerUntilValue(unsigned short limit) {
+    return dealCardUntilValue(&_playersHand, limit);
 }
 
-void Game::dealCardToDealerUntilSoft(unsigned short limit) {
-    dealCardUntilSoft(&_dealersHand, limit);
+void Game::dealCardToDealerUntilValue(unsigned short limit) {
+    dealCardUntilValue(&_dealersHand, limit);
 }
 
-void Game::dealCardUntilSoft(Hand* hand_p, unsigned short limit) {
-    while (hand_p->getSoftValue() < limit) {
+void Game::dealCardUntilValue(Hand* hand_p, unsigned short limit) {
+    while (hand_p->getValue() < limit) {
         dealCard(hand_p);
     }
 }
@@ -74,10 +81,15 @@ void  Game::revealDealersHand() {
     _dealersHand.reveal();
 }
 
+
 void Game::printGame() {
     cout << endl;
-    cout << "Dealer: " << _dealersHand.getUnicode() << endl;
-    cout << "Player: " << _playersHand.getUnicode() << endl;
+    cout << "Dealer: " << _dealersHand.getUnicode();
+    if (_dealersHand.isBusted()) cout << " BUSTED";
+    cout << endl;
+    cout << "Player: " << _playersHand.getUnicode();
+    if (_playersHand.isBusted()) cout << " BUSTED";
+    cout << endl;
     cout << endl;
 }
 

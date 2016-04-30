@@ -78,11 +78,7 @@ bool Hand::isBusted() {
     return (_handValues_p->front() > 21);
 }
 
-unsigned short Hand::getSoftValue() {
-    return _handValues_p->front();
-}
-
-unsigned short Hand::getHardValue() {
+unsigned short Hand::getValue() {
     if (isBusted()) {
         return _handValues_p->front();
     }
