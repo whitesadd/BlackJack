@@ -23,6 +23,9 @@ public:
     bool houseWins();
     bool playerWins();
 
+    static const unsigned int PLAYER_STOP_VALUE = 18;
+    static const unsigned int DEALER_STOP_VALUE = 17;
+
 private:
 
     FRIEND_TEST(GameTest, CheckDealUntilLimitWithoutAce);

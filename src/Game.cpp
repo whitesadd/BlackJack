@@ -28,7 +28,7 @@ void Game::run() {
     dealCardToDealer();
     printGame();
 
-    dealCardToPlayerUntilValue(18);
+    dealCardToPlayerUntilValue(Game::PLAYER_STOP_VALUE);
     printGame();
 
     if (_playersHand.isBusted()) return;
@@ -36,7 +36,7 @@ void Game::run() {
     revealDealersHand();
     printGame();
 
-    dealCardToDealerUntilValue(_playersHand.getValue());
+    dealCardToDealerUntilValue(Game::DEALER_STOP_VALUE);
     printGame();
 }
 

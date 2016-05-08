@@ -52,30 +52,30 @@ TEST_F(GameTest, CheckDealUntilLimitWithAce) {
 
 // Test Game with stubbed decks
 TEST_F(GameTest, TestGameNoAcesHouseWins) {
-    cards_p->push_back(new Card(Card::TWO, Card::SPADES)); // card to Player
-    cards_p->push_back(new Card(Card::JACK, Card::CLUBS)); // card to Dealer
-    cards_p->push_back(new Card(Card::KING, Card::HEARTS)); // card to Player
-    cards_p->push_back(new Card(Card::SEVEN, Card::DIAMONDS)); // card to Dealer
-    cards_p->push_back(new Card(Card::THREE, Card::DIAMONDS)); // card to Player
-    cards_p->push_back(new Card(Card::THREE, Card::CLUBS)); // card to Player, Stop.
-    cards_p->push_back(new Card(Card::FOUR, Card::SPADES)); // card to Dealer, House Wins!
-    Game game(new DecksStub(cards_p));
-    game.run();
-    ASSERT_EQ(game.houseWins(), true);
-    ASSERT_EQ(game.playerWins(), false);
-}
-
-// Test Game with stubbed decks
-TEST_F(GameTest, TestGameNoAcesPlayerWins) {
-    cards_p->push_back(new Card(Card::TWO, Card::SPADES)); // card to Player
-    cards_p->push_back(new Card(Card::JACK, Card::CLUBS)); // card to Dealer
-    cards_p->push_back(new Card(Card::KING, Card::HEARTS)); // card to Player
-    cards_p->push_back(new Card(Card::SEVEN, Card::DIAMONDS)); // card to Dealer
-    cards_p->push_back(new Card(Card::THREE, Card::DIAMONDS)); // card to Player
-    cards_p->push_back(new Card(Card::THREE, Card::CLUBS)); // card to Player, Stop.
-    cards_p->push_back(new Card(Card::QUEEN, Card::SPADES)); // card to Dealer, Busted!
+    cards_p->push_back(new Card(Card::TWO, Card::SPADES)); // card to Player, 2
+    cards_p->push_back(new Card(Card::JACK, Card::CLUBS)); // card to Dealer, 10
+    cards_p->push_back(new Card(Card::KING, Card::HEARTS)); // card to Player, 12
+    cards_p->push_back(new Card(Card::SEVEN, Card::DIAMONDS)); // card to Dealer, 17, Stop.
+    cards_p->push_back(new Card(Card::THREE, Card::DIAMONDS)); // card to Player, 15
+    cards_p->push_back(new Card(Card::THREE, Card::CLUBS)); // card to Player, 18, Stop. Player Wins!!
+    cards_p->push_back(new Card(Card::FOUR, Card::SPADES)); // Not used
     Game game(new DecksStub(cards_p));
     game.run();
     ASSERT_EQ(game.houseWins(), false);
     ASSERT_EQ(game.playerWins(), true);
+}
+
+// Test Game with stubbed decks
+TEST_F(GameTest, TestGameNoAcesPlayerWins) {
+    cards_p->push_back(new Card(Card::TWO, Card::SPADES)); // card to Player, 2
+    cards_p->push_back(new Card(Card::JACK, Card::CLUBS)); // card to Dealer, 10
+    cards_p->push_back(new Card(Card::KING, Card::HEARTS)); // card to Player, 12
+    cards_p->push_back(new Card(Card::SEVEN, Card::DIAMONDS)); // card to Dealer, 17, Stop.
+    cards_p->push_back(new Card(Card::THREE, Card::DIAMONDS)); // card to Player, 15
+    cards_p->push_back(new Card(Card::NINE, Card::CLUBS)); // card to Player, 24, Busted! House Wins.
+    cards_p->push_back(new Card(Card::QUEEN, Card::SPADES)); // Not used
+    Game game(new DecksStub(cards_p));
+    game.run();
+    ASSERT_EQ(game.houseWins(), true);
+    ASSERT_EQ(game.playerWins(), false);
 }
