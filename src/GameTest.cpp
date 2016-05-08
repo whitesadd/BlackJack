@@ -62,7 +62,7 @@ TEST_F(GameTest, TestGameNoAcesHouseWins) {
     Game game(new DecksStub(cards_p));
     game.run();
     ASSERT_EQ(game.houseWins(), true);
-    ASSERT_EQ(game.houseWins(), false);
+    ASSERT_EQ(game.playerWins(), false);
 }
 
 // Test Game with stubbed decks
@@ -77,5 +77,5 @@ TEST_F(GameTest, TestGameNoAcesPlayerWins) {
     Game game(new DecksStub(cards_p));
     game.run();
     ASSERT_EQ(game.houseWins(), false);
-    ASSERT_EQ(game.houseWins(), true);
+    ASSERT_EQ(game.playerWins(), true);
 }

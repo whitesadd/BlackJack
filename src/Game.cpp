@@ -36,12 +36,23 @@ void Game::run() {
     revealDealersHand();
     printGame();
 
-    dealCardToDealerUntilValue(17);
+    dealCardToDealerUntilValue(_playersHand.getValue());
     printGame();
 }
 
-bool Game::houseWins() {return true;}
-bool Game::playerWins() {return true;}
+bool Game::houseWins() {
+    if (_playersHand.isBusted()) return true;
+    if (_dealersHand.isBusted()) return false;
+    if (_dealersHand.getValue() >= _playersHand.getValue()) return true;
+    return false;
+}
+
+bool Game::playerWins() {
+    if (_playersHand.isBusted()) return false;
+    if (_dealersHand.isBusted()) return true;
+    if (_dealersHand.getValue() >= _playersHand.getValue()) return false;
+    return true;
+}
 
 
 void Game::dealCardToPlayer(bool facingUp) {
