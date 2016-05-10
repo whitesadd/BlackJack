@@ -1,6 +1,6 @@
 //============================================================================
 // Name        : BlackJack.cpp
-// Author      : 
+// Author      :
 // Version     :
 // Copyright   : Your copyright notice
 // Description : Black Jack Game
@@ -8,11 +8,12 @@
 
 #include <iostream>
 #include "Game.h"
+#include "gmock/gmock.h"
 #include "gtest/gtest.h"
 
 
 int main(int argc, char **argv) {
-    ::testing::InitGoogleTest(&argc, argv);
+    ::testing::InitGoogleMock(&argc, argv);
 
     std::cout << std::endl << "!!!Welcome to Black Jack TDD!!!" << std::endl << std::endl;
     if (RUN_ALL_TESTS() !=0) {
