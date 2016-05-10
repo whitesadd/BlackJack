@@ -11,16 +11,14 @@
 #include "gtest/gtest.h"
 
 
-using namespace std;
-
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
 
-    cout << endl << "!!!Welcome to Black Jack TDD!!!" << endl << endl;
+    std::cout << std::endl << "!!!Welcome to Black Jack TDD!!!" << std::endl << std::endl;
     if (RUN_ALL_TESTS() !=0) {
         return -1;
     }
 
-    cout << endl << "!!!!Now, let's play Black Jack!!!!" << endl;
+    std::cout << std::endl << "!!!!Now, let's play Black Jack!!!!" << std::endl;
     Game().run();
 }

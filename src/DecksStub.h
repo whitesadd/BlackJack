@@ -10,12 +10,10 @@
 
 #include "Decks.h"
 
-using namespace std;
-
 class DecksStub : public Decks {
 
 public:
-    DecksStub(vector<Card*>* stack_p);
+    DecksStub(std::vector<Card*>* stack_p);
     virtual ~DecksStub();
 };
 

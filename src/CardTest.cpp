@@ -9,8 +9,6 @@
 #include "Card.h"
 #include "gtest/gtest.h"
 
-using namespace std;
-
 // Basic card creation and destruction
 TEST(CardTest, CreateAndDestroyCard) {
     Card card = Card(Card::ACE, Card::SPADES);
@@ -27,15 +25,15 @@ TEST(CardTest, GetValueForFaceCard) {
 }
 
 TEST(CardTest, DumpUnicodeDeck) {
-    cout << endl;
+    std::cout << std::endl;
 
     for (Suit suit = Card::FIRST_SUIT; suit <= Card::LAST_SUIT; suit++) {
         for (Rank rank = Card::FIRST_RANK; rank <= Card::LAST_RANK; rank++) {
-            cout << Card(rank, suit, Card::FACING_UP).getUnicodeString() << " ";
+            std::cout << Card(rank, suit, Card::FACING_UP).getUnicodeString() << " ";
         }
-        cout << endl;
+        std::cout << std::endl;
     }
-    cout << endl;
+    std::cout << std::endl;
 }
 
 TEST(CardTest, ManipulateCardFacingUp) {

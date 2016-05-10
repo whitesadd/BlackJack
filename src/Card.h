@@ -11,8 +11,6 @@
 #include <climits>
 #include <string>
 
-using namespace std;
-
 typedef int Rank;
 typedef int Suit;
 
@@ -27,7 +25,7 @@ public:
     virtual ~Card();
 
     RankValues getValues();
-    string getUnicodeString();
+    std::string getUnicodeString();
     void flip();
     bool isFacingUp();
 

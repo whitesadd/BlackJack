@@ -9,8 +9,6 @@
 #include "Hand.h"
 #include "Card.h"
 
-using namespace std;
-
 TEST(HandTest, AddCardToHand) {
     Hand hand;
     ASSERT_EQ(0, hand.getUnicode().compare(""));
@@ -36,7 +34,7 @@ TEST(HandTest, AddCardToHand) {
 
 TEST(HandTest, EvalSingleHandValues) {
     Hand hand;
-    list<unsigned short> const * handValues_p;
+    std::list<unsigned short> const * handValues_p;
     handValues_p = hand.getValues();
     ASSERT_EQ(1, handValues_p->size());
     ASSERT_EQ(0, handValues_p->front());
@@ -57,8 +55,8 @@ TEST(HandTest, EvalSingleHandValues) {
 
 TEST(HandTest, EvalDoubleAceValues) {
     Hand hand;
-    list<unsigned short> const * handValues_p;
-    list<unsigned short>::const_iterator it;
+    std::list<unsigned short> const * handValues_p;
+    std::list<unsigned short>::const_iterator it;
 
     handValues_p = hand.getValues();
     ASSERT_EQ(1, handValues_p->size());

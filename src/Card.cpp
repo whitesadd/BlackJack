@@ -33,14 +33,14 @@ RankValues Card::getValues() {
     return rankValues;
 }
 
-string Card::getUnicodeString() {
+std::string Card::getUnicodeString() {
     if (!_facingUp) {
         return "\u0020\u003F\u003F";
     }
 
     int rankIndex = _rank - 1;
     int suitIndex = _suit;
-    static string const unicodeArray[][4] = {
+    static std::string const unicodeArray[][4] = {
            {"\u0020\u0041\u2660", "\u0020\u0041\u2665", "\u0020\u0041\u2666", "\u0020\u0041\u2663"},
            {"\u0020\u0032\u2660", "\u0020\u0032\u2665", "\u0020\u0032\u2666", "\u0020\u0032\u2663"},
            {"\u0020\u0033\u2660", "\u0020\u0033\u2665", "\u0020\u0033\u2666", "\u0020\u0033\u2663"},

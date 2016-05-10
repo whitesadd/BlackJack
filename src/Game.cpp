@@ -10,8 +10,6 @@
 #include "Game.h"
 #include "DecksImp.h"
 
-using namespace std;
-
 Game::Game() : _deck_p(new DecksImp(4)) {}
 
 Game::Game(Decks* decks_p) : _deck_p(decks_p) {}
@@ -94,13 +92,12 @@ void  Game::revealDealersHand() {
 
 
 void Game::printGame() {
-    cout << endl;
-    cout << "Dealer: " << _dealersHand.getUnicode();
-    if (_dealersHand.isBusted()) cout << " BUSTED";
-    cout << endl;
-    cout << "Player: " << _playersHand.getUnicode();
-    if (_playersHand.isBusted()) cout << " BUSTED";
-    cout << endl;
-    cout << endl;
+    std::cout << std::endl;
+    std::cout << "Dealer: " << _dealersHand.getUnicode();
+    if (_dealersHand.isBusted()) std::cout << " BUSTED";
+    std::cout << std::endl;
+    std::cout << "Player: " << _playersHand.getUnicode();
+    if (_playersHand.isBusted()) std::cout << " BUSTED";
+    std::cout << std::endl << std::endl;
 }
 

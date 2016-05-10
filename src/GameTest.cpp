@@ -9,20 +9,18 @@
 #include "DecksStub.h"
 #include "gtest/gtest.h"
 
-using namespace std;
-
 class GameTest : public ::testing::Test {
 
 protected:
     virtual void SetUp() {
-        cards_p = new(vector<Card*>);
+        cards_p = new(std::vector<Card*>);
     }
 
     virtual void TearDown() {
         delete cards_p;
     }
 
-    vector<Card*>* cards_p;
+    std::vector<Card*>* cards_p;
 };
 
 TEST_F(GameTest, CheckDealUntilLimitWithoutAce) {

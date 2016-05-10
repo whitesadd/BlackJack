@@ -11,10 +11,8 @@
 
 #define UNICODE_SPACE_STR        ("\u0020")
 
-using namespace std;
-
 Hand::Hand() {
-    _handValues_p = new list<unsigned short>(1,0);
+    _handValues_p = new std::list<unsigned short>(1,0);
 }
 
 Hand::~Hand() {
@@ -37,8 +35,8 @@ void Hand::reveal() {
 }
 
 
-const string Hand::getUnicode() {
-    string unicodeStr = "";
+const std::string Hand::getUnicode() {
+    std::string unicodeStr = "";
     if (size() == 0) return unicodeStr;
 
     Hand::iterator card_pp = begin();
@@ -55,7 +53,7 @@ const string Hand::getUnicode() {
 void Hand::addCardValues(Card* newCard_p) {
     unsigned short value1 = newCard_p->getValues().firstValue;
     unsigned short value2 = newCard_p->getValues().secondValue;
-    list<unsigned short>::iterator it;
+    std::list<unsigned short>::iterator it;
 
     it = _handValues_p->begin();
     while (it != _handValues_p->end()) {
@@ -70,7 +68,7 @@ void Hand::addCardValues(Card* newCard_p) {
     _handValues_p->unique();
 }
 
-list<unsigned short> const * Hand::getValues() {
+std::list<unsigned short> const * Hand::getValues() {
     return _handValues_p;
 }
 
@@ -82,7 +80,7 @@ unsigned short Hand::getValue() {
     if (isBusted()) {
         return _handValues_p->front();
     }
-    list<unsigned short>::iterator it = _handValues_p->end();
+    std::list<unsigned short>::iterator it = _handValues_p->end();
     it--;
     while (true) {
         if (*it <= 21) {

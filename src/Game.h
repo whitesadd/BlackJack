@@ -12,8 +12,6 @@
 #include "Hand.h"
 #include "gtest/gtest.h"
 
-using namespace std;
-
 class Game {
 public:
     Game();
