@@ -10,8 +10,6 @@
 
 #include "Decks.h"
 
-using namespace std;
-
 class DecksStub : public Decks {
 
 public:

@@ -9,8 +9,6 @@
 #include "Hand.h"
 #include "Card.h"
 
-using namespace std;
-
 TEST(HandTest, AddCardToHand) {
     Hand hand;
     ASSERT_EQ(0, hand.getUnicode().compare(""));

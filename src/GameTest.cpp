@@ -9,8 +9,6 @@
 #include "DecksStub.h"
 #include "gtest/gtest.h"
 
-using namespace std;
-
 class GameTest : public ::testing::Test {
 
 protected:

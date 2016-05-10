@@ -11,8 +11,6 @@
 
 #define UNICODE_SPACE_STR        ("\u0020")
 
-using namespace std;
-
 Hand::Hand() {
     _handValues_p = new list<unsigned short>(1,0);
 }

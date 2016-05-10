@@ -12,8 +12,6 @@
 #include <list>
 #include "Card.h"
 
-using namespace std;
-
 class Hand : public vector<Card *> {
 public:
     Hand();

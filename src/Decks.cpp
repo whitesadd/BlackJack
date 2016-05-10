@@ -8,8 +8,6 @@
 #include <iostream>
 #include "Decks.h"
 
-using namespace std;
-
 Decks::Decks() : _stack(0) {}
 
 Decks::~Decks() {

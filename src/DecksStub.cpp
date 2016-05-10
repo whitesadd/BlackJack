@@ -7,8 +7,6 @@
 
 #include "DecksStub.h"
 
-using namespace std;
-
 DecksStub::DecksStub(vector<Card*>* stack_p) {
     _stack = *stack_p;
 }

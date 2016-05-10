@@ -8,8 +8,6 @@
 #ifndef DECKS_H_
 #define DECKS_H_
 
-using namespace std;
-
 #include <vector>
 #include "Card.h"
 
