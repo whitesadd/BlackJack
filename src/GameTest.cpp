@@ -11,7 +11,7 @@
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
 
-using ::testing::AtLeast;
+using ::testing::Return;
 
 class GameTest : public ::testing::Test {
 
@@ -68,7 +68,13 @@ TEST_F(GameTest, TestGameNoAcesHouseWins) {
     UserInputMock userInputMock;
     Game game(new DecksStub(cards_p), &userInputMock);
 
+    EXPECT_CALL(userInputMock, getPlayerMove())
+            .Times(3)
+            .WillOnce(Return('D'))
+            .WillOnce(Return('D'))
+            .WillOnce(Return('H'));
     game.run();
+
     ASSERT_EQ(game.houseWins(), false);
     ASSERT_EQ(game.playerWins(), true);
 }
@@ -82,8 +88,16 @@ TEST_F(GameTest, TestGameNoAcesPlayerWins) {
     cards_p->push_back(new Card(Card::THREE, Card::DIAMONDS)); // card to Player, 15
     cards_p->push_back(new Card(Card::NINE, Card::CLUBS)); // card to Player, 24, Busted! House Wins.
     cards_p->push_back(new Card(Card::QUEEN, Card::SPADES)); // Not used
-    Game game(new DecksStub(cards_p));
+
+    UserInputMock userInputMock;
+    Game game(new DecksStub(cards_p), &userInputMock);
+
+    EXPECT_CALL(userInputMock, getPlayerMove())
+            .Times(2)
+            .WillOnce(Return('D'))
+            .WillOnce(Return('D'));
     game.run();
+
     ASSERT_EQ(game.houseWins(), true);
     ASSERT_EQ(game.playerWins(), false);
 }

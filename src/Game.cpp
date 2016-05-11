@@ -35,8 +35,13 @@ void Game::run() {
     dealCardToDealer();
     printGame();
 
-    dealCardToPlayerUntilValue(Game::PLAYER_STOP_VALUE);
-    printGame();
+    while (!_playersHand.isBusted()) {
+        std::cout << "Select Draw (D) or Hold (H): " << std::endl;
+        if (_userInput_p->getPlayerMove() == 'H')
+            break;
+        dealCardToPlayer();
+        printGame();
+    }
 
     if (_playersHand.isBusted()) return;
 
