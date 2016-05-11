@@ -17,6 +17,7 @@ class Game {
 public:
     Game();
     Game(Decks*);
+    Game(Decks*, UserInput*);
     virtual ~Game();
     void run();
     bool houseWins();
@@ -33,9 +34,9 @@ private:
     FRIEND_TEST(GameTest, TestGameNoAcesHouseWins);
 
     Decks* _deck_p;
+    UserInput* _userInput_p;
     Hand _dealersHand;
     Hand _playersHand;
-    UserInput* _userInput_p;
 
     void dealCardToPlayer(bool facingUp = Card::FACING_UP);
     void dealCardToDealer(bool facingUp = Card::FACING_UP);

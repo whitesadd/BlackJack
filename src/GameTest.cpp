@@ -65,10 +65,9 @@ TEST_F(GameTest, TestGameNoAcesHouseWins) {
     // Player ask Hold
     cards_p->push_back(new Card(Card::FOUR, Card::SPADES)); // Not used
 
-    UserInputMock* userInputMock_p = new UserInputMock();
+    UserInputMock userInputMock;
+    Game game(new DecksStub(cards_p), &userInputMock);
 
-    Game game(new DecksStub(cards_p));
-    game._userInput_p = userInputMock_p;
     game.run();
     ASSERT_EQ(game.houseWins(), false);
     ASSERT_EQ(game.playerWins(), true);

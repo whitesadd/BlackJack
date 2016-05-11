@@ -11,9 +11,17 @@
 #include "DecksImp.h"
 #include "UserInputImp.h"
 
-Game::Game() : _deck_p(new DecksImp(4)), _userInput_p(new UserInputImp()) {}
+Game::Game() :
+        _deck_p(new DecksImp(4)),
+        _userInput_p(new UserInputImp()) {}
 
-Game::Game(Decks* decks_p) : _deck_p(decks_p), _userInput_p(new UserInputImp()) {}
+Game::Game(Decks* decks_p) :
+        _deck_p(decks_p),
+        _userInput_p(new UserInputImp()) {}
+
+Game::Game(Decks* decks_p, UserInput* userInput_p) :
+        _deck_p(decks_p),
+        _userInput_p(userInput_p) {}
 
 Game::~Game() {
     delete _deck_p;
