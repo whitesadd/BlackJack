@@ -9,10 +9,11 @@
 #include <cassert>
 #include "Game.h"
 #include "DecksImp.h"
+#include "UserInputImp.h"
 
-Game::Game() : _deck_p(new DecksImp(4)) {}
+Game::Game() : _deck_p(new DecksImp(4)), _userInput_p(new UserInputImp()) {}
 
-Game::Game(Decks* decks_p) : _deck_p(decks_p) {}
+Game::Game(Decks* decks_p) : _deck_p(decks_p), _userInput_p(new UserInputImp()) {}
 
 Game::~Game() {
     delete _deck_p;

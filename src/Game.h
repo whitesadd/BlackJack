@@ -10,6 +10,7 @@
 
 #include "decks.h"
 #include "Hand.h"
+#include "UserInput.h"
 #include "gtest/gtest.h"
 
 class Game {
@@ -34,6 +35,7 @@ private:
     Decks* _deck_p;
     Hand _dealersHand;
     Hand _playersHand;
+    UserInput* _userInput_p;
 
     void dealCardToPlayer(bool facingUp = Card::FACING_UP);
     void dealCardToDealer(bool facingUp = Card::FACING_UP);

@@ -10,7 +10,7 @@
 
 class UserInput {
 public:
-    virtual ~UserInput() = 0;
+    virtual ~UserInput() {}
     virtual char getPlayerMove() = 0;
 };
 

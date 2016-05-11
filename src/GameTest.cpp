@@ -7,7 +7,11 @@
 
 #include "Game.h"
 #include "DecksStub.h"
+#include "UserInputMock.h"
+#include "gmock/gmock.h"
 #include "gtest/gtest.h"
+
+using ::testing::AtLeast;
 
 class GameTest : public ::testing::Test {
 
@@ -53,11 +57,18 @@ TEST_F(GameTest, TestGameNoAcesHouseWins) {
     cards_p->push_back(new Card(Card::TWO, Card::SPADES)); // card to Player, 2
     cards_p->push_back(new Card(Card::JACK, Card::CLUBS)); // card to Dealer, 10
     cards_p->push_back(new Card(Card::KING, Card::HEARTS)); // card to Player, 12
-    cards_p->push_back(new Card(Card::SEVEN, Card::DIAMONDS)); // card to Dealer, 17, Stop.
+    cards_p->push_back(new Card(Card::SEVEN, Card::DIAMONDS)); // card to Dealer, 17.
+    // Player ask Deal card
     cards_p->push_back(new Card(Card::THREE, Card::DIAMONDS)); // card to Player, 15
+    // Player ask Deal card
     cards_p->push_back(new Card(Card::THREE, Card::CLUBS)); // card to Player, 18, Stop. Player Wins!!
+    // Player ask Hold
     cards_p->push_back(new Card(Card::FOUR, Card::SPADES)); // Not used
+
+    UserInputMock* userInputMock_p = new UserInputMock();
+
     Game game(new DecksStub(cards_p));
+    game._userInput_p = userInputMock_p;
     game.run();
     ASSERT_EQ(game.houseWins(), false);
     ASSERT_EQ(game.playerWins(), true);

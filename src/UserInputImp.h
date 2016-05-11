@@ -12,7 +12,6 @@
 
 class UserInputImp : public UserInput {
 public:
-    virtual ~UserInputImp();
     char getPlayerMove();
 };
 
