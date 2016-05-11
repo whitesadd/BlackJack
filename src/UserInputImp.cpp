@@ -6,17 +6,11 @@
  */
 
 #include <iostream>
-#include "UserInput.h"
+#include "UserInputImp.h"
 
-
-class UserInputImp : public UserInput {
-
-public:
-    ~UserInputImp() {}
-
-    char getPlayerMove() {
-        char move;
-        std::cin >> move;
-        return move;
-    };
+char UserInputImp::getPlayerMove() {
+    char move;
+    std::cin >> move;
+    return move;
 };
+
