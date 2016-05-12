@@ -25,15 +25,31 @@ TEST(CardTest, GetValueForFaceCard) {
 }
 
 TEST(CardTest, DumpUnicodeDeck) {
-    std::cout << std::endl;
 
-    for (Suit suit = Card::FIRST_SUIT; suit <= Card::LAST_SUIT; suit++) {
-        for (Rank rank = Card::FIRST_RANK; rank <= Card::LAST_RANK; rank++) {
-            std::cout << Card(rank, suit, Card::FACING_UP).getUnicodeString() << " ";
+    static std::string const unicodeDeckDump =
+           "\u0020\u0041\u2660\u0020\u0020\u0041\u2665\u0020\u0020\u0041\u2666\u0020\u0020\u0041\u2663\u0020\u000A"
+           "\u0020\u0032\u2660\u0020\u0020\u0032\u2665\u0020\u0020\u0032\u2666\u0020\u0020\u0032\u2663\u0020\u000A"
+           "\u0020\u0033\u2660\u0020\u0020\u0033\u2665\u0020\u0020\u0033\u2666\u0020\u0020\u0033\u2663\u0020\u000A"
+           "\u0020\u0034\u2660\u0020\u0020\u0034\u2665\u0020\u0020\u0034\u2666\u0020\u0020\u0034\u2663\u0020\u000A"
+           "\u0020\u0035\u2660\u0020\u0020\u0035\u2665\u0020\u0020\u0035\u2666\u0020\u0020\u0035\u2663\u0020\u000A"
+           "\u0020\u0036\u2660\u0020\u0020\u0036\u2665\u0020\u0020\u0036\u2666\u0020\u0020\u0036\u2663\u0020\u000A"
+           "\u0020\u0037\u2660\u0020\u0020\u0037\u2665\u0020\u0020\u0037\u2666\u0020\u0020\u0037\u2663\u0020\u000A"
+           "\u0020\u0038\u2660\u0020\u0020\u0038\u2665\u0020\u0020\u0038\u2666\u0020\u0020\u0038\u2663\u0020\u000A"
+           "\u0020\u0039\u2660\u0020\u0020\u0039\u2665\u0020\u0020\u0039\u2666\u0020\u0020\u0039\u2663\u0020\u000A"
+           "\u0031\u0030\u2660\u0020\u0031\u0030\u2665\u0020\u0031\u0030\u2666\u0020\u0031\u0030\u2663\u0020\u000A"
+           "\u0020\u004A\u2660\u0020\u0020\u004A\u2665\u0020\u0020\u004A\u2666\u0020\u0020\u004A\u2663\u0020\u000A"
+           "\u0020\u0051\u2660\u0020\u0020\u0051\u2665\u0020\u0020\u0051\u2666\u0020\u0020\u0051\u2663\u0020\u000A"
+           "\u0020\u004B\u2660\u0020\u0020\u004B\u2665\u0020\u0020\u004B\u2666\u0020\u0020\u004B\u2663\u0020\u000A";
+
+    std::stringbuf sb;
+    std::ostream outTest(&sb);
+    for (Rank rank = Card::FIRST_RANK; rank <= Card::LAST_RANK; rank++) {
+        for (Suit suit = Card::FIRST_SUIT; suit <= Card::LAST_SUIT; suit++) {
+            outTest << Card(rank, suit, Card::FACING_UP).getUnicodeString() << " ";
         }
-        std::cout << std::endl;
+        outTest << std::endl;
     }
-    std::cout << std::endl;
+    ASSERT_EQ(0, unicodeDeckDump.compare(sb.str()));
 }
 
 TEST(CardTest, ManipulateCardFacingUp) {

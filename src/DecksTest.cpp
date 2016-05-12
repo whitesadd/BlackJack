@@ -31,15 +31,13 @@ TEST(DecksTest, CheckSize) {
 // Test drawCard()
 TEST(DecksTest, CheckDrawCardFromFourDecks) {
     Decks* decks_p = new DecksImp(4);
-    std::cout << std::endl;
+
     for (int i = 0; i < 52 * 4; i++) {
         Card* card_p = decks_p->drawCard();
         ASSERT_EQ(52 * 4 - i - 1, decks_p->size());
-        std::cout << card_p->getUnicodeString() << " ";
-        if (i % 26 == 25) std::cout << std::endl;
         delete card_p;
     }
-    std::cout << std::endl;
+
     ASSERT_EQ(NULL, decks_p->drawCard()) << "Drawing card from empty "
             "deck does not return NULL";
     delete decks_p;
