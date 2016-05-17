@@ -7,9 +7,9 @@
 
 #include "Game.h"
 #include "DecksStub.h"
-#include "UserInputMock.h"
 #include "gmock/gmock.h"
 #include "gtest/gtest.h"
+#include "UserInterfaceMock.h"
 
 using ::testing::Return;
 
@@ -65,10 +65,10 @@ TEST_F(GameTest, TestGameNoAcesHouseWins) {
     // Player ask Hold
     cards_p->push_back(new Card(Card::FOUR, Card::SPADES)); // Not used
 
-    UserInputMock userInputMock;
-    Game game(new DecksStub(cards_p), &userInputMock);
+    UserInterfaceMock userInterfaceMock;
+    Game game(new DecksStub(cards_p), &userInterfaceMock);
 
-    EXPECT_CALL(userInputMock, getPlayerMove())
+    EXPECT_CALL(userInterfaceMock, getPlayerMove())
             .Times(3)
             .WillOnce(Return('D'))
             .WillOnce(Return('D'))
@@ -89,10 +89,10 @@ TEST_F(GameTest, TestGameNoAcesPlayerWins) {
     cards_p->push_back(new Card(Card::NINE, Card::CLUBS)); // card to Player, 24, Busted! House Wins.
     cards_p->push_back(new Card(Card::QUEEN, Card::SPADES)); // Not used
 
-    UserInputMock userInputMock;
-    Game game(new DecksStub(cards_p), &userInputMock);
+    UserInterfaceMock userInterfaceMock;
+    Game game(new DecksStub(cards_p), &userInterfaceMock);
 
-    EXPECT_CALL(userInputMock, getPlayerMove())
+    EXPECT_CALL(userInterfaceMock, getPlayerMove())
             .Times(2)
             .WillOnce(Return('D'))
             .WillOnce(Return('D'));

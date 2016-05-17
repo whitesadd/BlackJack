@@ -9,19 +9,19 @@
 #include <cassert>
 #include "Game.h"
 #include "DecksImp.h"
-#include "UserInputImp.h"
+#include "UserInterfaceImp.h"
 
 Game::Game() :
         _deck_p(new DecksImp(4)),
-        _userInput_p(new UserInputImp()) {}
+        _userInterface_p(new UserInterfaceImp()) {}
 
 Game::Game(Decks* decks_p) :
         _deck_p(decks_p),
-        _userInput_p(new UserInputImp()) {}
+        _userInterface_p(new UserInterfaceImp()) {}
 
-Game::Game(Decks* decks_p, UserInput* userInput_p) :
+Game::Game(Decks* decks_p, UserInterface* userInterface_p) :
         _deck_p(decks_p),
-        _userInput_p(userInput_p) {}
+        _userInterface_p(userInterface_p) {}
 
 Game::~Game() {
     delete _deck_p;
@@ -37,7 +37,7 @@ void Game::run() {
 
     while (!_playersHand.isBusted()) {
         std::cout << "Select Draw (D) or Hold (H): " << std::endl;
-        if (_userInput_p->getPlayerMove() == 'H')
+        if (_userInterface_p->getPlayerMove() == 'H')
             break;
         dealCardToPlayer();
         printGame();

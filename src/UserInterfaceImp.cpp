@@ -1,14 +1,15 @@
 /*
- * UserInputImp.cpp
+ * UserInterfaceImp.cpp
  *
  *  Created on: May 10, 2016
  *      Author: david
  */
 
-#include <iostream>
-#include "UserInputImp.h"
+#include "UserInterfaceImp.h"
 
-char UserInputImp::getPlayerMove() {
+#include <iostream>
+
+char UserInterfaceImp::getPlayerMove() {
     char move;
     std::cin >> move;
     return move;

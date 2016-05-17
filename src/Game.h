@@ -10,14 +10,14 @@
 
 #include "decks.h"
 #include "Hand.h"
-#include "UserInput.h"
 #include "gtest/gtest.h"
+#include "UserInterface.h"
 
 class Game {
 public:
     Game();
     Game(Decks*);
-    Game(Decks*, UserInput*);
+    Game(Decks*, UserInterface*);
     virtual ~Game();
     void run();
     bool houseWins();
@@ -34,7 +34,7 @@ private:
     FRIEND_TEST(GameTest, TestGameNoAcesHouseWins);
 
     Decks* _deck_p;
-    UserInput* _userInput_p;
+    UserInterface* _userInterface_p;
     Hand _dealersHand;
     Hand _playersHand;
 
