@@ -9,8 +9,6 @@
 #include <iostream>
 #include "Hand.h"
 
-#define UNICODE_SPACE_STR        ("\u0020")
-
 Hand::Hand() {
     _handValues_p = new std::list<unsigned short>(1,0);
 }

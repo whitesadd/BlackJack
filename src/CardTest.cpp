@@ -63,10 +63,10 @@ TEST(CardTest, ManipulateCard) {
     ASSERT_FALSE(card.isFacingUp());
     ASSERT_EQ(1, card.getValues().firstValue);
     ASSERT_EQ(11, card.getValues().secondValue);
-    ASSERT_EQ(0, card.getUnicodeString().compare("\u0020\u003F\u003F"));
+    ASSERT_EQ(0, card.getUnicodeString().compare(UNICODE_QUESTION_STR));
     card.flip();
     ASSERT_TRUE(card.isFacingUp());
     ASSERT_EQ(1, card.getValues().firstValue);
     ASSERT_EQ(11, card.getValues().secondValue);
-    ASSERT_EQ(0, card.getUnicodeString().compare("\u0020\u0041\u2660"));
+    ASSERT_EQ(0, card.getUnicodeString().compare(UNICODE_ACE_STR UNICODE_SPADES_STR));
 }

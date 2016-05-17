@@ -12,6 +12,8 @@
 #include <list>
 #include "Card.h"
 
+#define UNICODE_SPACE_STR        "\u0020"
+
 class Hand : public std::vector<Card *> {
 public:
     Hand();

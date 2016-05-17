@@ -77,6 +77,13 @@ TEST_F(GameTest, TestGameNoAcesHouseWins) {
 
     ASSERT_EQ(game.houseWins(), false);
     ASSERT_EQ(game.playerWins(), true);
+    ASSERT_EQ(1, game._deck_p->size());
+    ASSERT_EQ(0, game._playersHand.getUnicode().compare(UNICODE_TWO_STR   UNICODE_SPADES_STR   UNICODE_SPACE_STR
+                                                        UNICODE_KING_STR  UNICODE_HEARTS_STR   UNICODE_SPACE_STR
+                                                        UNICODE_THREE_STR UNICODE_DIAMONDS_STR UNICODE_SPACE_STR
+                                                        UNICODE_THREE_STR UNICODE_CLUBS_STR));
+    ASSERT_EQ(0, game._dealersHand.getUnicode().compare(UNICODE_JACK_STR  UNICODE_CLUBS_STR    UNICODE_SPACE_STR
+                                                        UNICODE_SEVEN_STR UNICODE_DIAMONDS_STR));
 }
 
 // Test Game with stubbed decks
@@ -100,4 +107,11 @@ TEST_F(GameTest, TestGameNoAcesPlayerWins) {
 
     ASSERT_EQ(game.houseWins(), true);
     ASSERT_EQ(game.playerWins(), false);
+    ASSERT_EQ(1, game._deck_p->size());
+    ASSERT_EQ(0, game._playersHand.getUnicode().compare(UNICODE_TWO_STR   UNICODE_SPADES_STR   UNICODE_SPACE_STR
+                                                        UNICODE_KING_STR  UNICODE_HEARTS_STR   UNICODE_SPACE_STR
+                                                        UNICODE_THREE_STR UNICODE_DIAMONDS_STR UNICODE_SPACE_STR
+                                                        UNICODE_NINE_STR  UNICODE_CLUBS_STR));
+    ASSERT_EQ(0, game._dealersHand.getUnicode().compare(UNICODE_QUESTION_STR UNICODE_SPACE_STR
+                                                        UNICODE_SEVEN_STR UNICODE_DIAMONDS_STR));
 }

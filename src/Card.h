@@ -11,6 +11,27 @@
 #include <climits>
 #include <string>
 
+#define UNICODE_ACE_STR         "\u0020\u0041"
+#define UNICODE_TWO_STR         "\u0020\u0032"
+#define UNICODE_THREE_STR       "\u0020\u0033"
+#define UNICODE_FOUR_STR        "\u0020\u0034"
+#define UNICODE_FIVE_STR        "\u0020\u0035"
+#define UNICODE_SIX_STR         "\u0020\u0036"
+#define UNICODE_SEVEN_STR       "\u0020\u0037"
+#define UNICODE_EIGHT_STR       "\u0020\u0038"
+#define UNICODE_NINE_STR        "\u0020\u0039"
+#define UNICODE_TEN_STR         "\u0031\u0030"
+#define UNICODE_JACK_STR        "\u0020\u004A"
+#define UNICODE_QUEEN_STR       "\u0020\u0051"
+#define UNICODE_KING_STR        "\u0020\u004B"
+
+#define UNICODE_SPADES_STR      "\u2660"
+#define UNICODE_HEARTS_STR      "\u2665"
+#define UNICODE_DIAMONDS_STR    "\u2666"
+#define UNICODE_CLUBS_STR       "\u2663"
+
+#define UNICODE_QUESTION_STR    "\u0020\u003F\u003F"
+
 typedef int Rank;
 typedef int Suit;
 

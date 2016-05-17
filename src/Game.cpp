@@ -36,7 +36,7 @@ void Game::run() {
     printGame();
 
     while (!_playersHand.isBusted()) {
-        std::cout << "Select Draw (D) or Hold (H): " << std::endl;
+        std::cout << "Select Draw (D) or Hold (H): ";
         if (_userInterface_p->getPlayerMove() == 'H')
             break;
         dealCardToPlayer();
@@ -45,7 +45,7 @@ void Game::run() {
 
     if (_playersHand.isBusted()) return;
 
-    revealDealersHand();
+    _dealersHand.reveal();
     printGame();
 
     dealCardToDealerUntilValue(Game::DEALER_STOP_VALUE);
@@ -99,11 +99,6 @@ void Game::dealCardUntilValue(Hand* hand_p, unsigned short limit) {
         dealCard(hand_p);
     }
 }
-
-void  Game::revealDealersHand() {
-    _dealersHand.reveal();
-}
-
 
 void Game::printGame() {
     std::cout << std::endl;

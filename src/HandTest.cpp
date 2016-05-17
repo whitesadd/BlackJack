@@ -15,18 +15,23 @@ TEST(HandTest, AddCardToHand) {
     Card* firstCard_p = new Card(Card::ACE, Card::SPADES, Card::FACING_UP);
     hand.addCard(firstCard_p);
     ASSERT_EQ(1, hand.size());
-    ASSERT_EQ(0, hand.getUnicode().compare("\u0020\u0041\u2660"));
+    ASSERT_EQ(0, hand.getUnicode().compare(UNICODE_ACE_STR UNICODE_SPADES_STR));
     Card* secondCard_p = new Card(Card::ACE, Card::SPADES, Card::FACING_DOWN);
     hand.addCard(secondCard_p);
     ASSERT_EQ(2, hand.size());
-    ASSERT_EQ(0, hand.getUnicode().compare("\u0020\u0041\u2660\u0020\u0020\u003F\u003F"));
+    ASSERT_EQ(0, hand.getUnicode().compare(UNICODE_ACE_STR UNICODE_SPADES_STR UNICODE_SPACE_STR
+                                           UNICODE_QUESTION_STR));
     Card* thirdCard_p = new Card(Card::TEN, Card::CLUBS, Card::FACING_UP);
     hand.addCard(thirdCard_p);
     ASSERT_EQ(3, hand.size());
-    ASSERT_EQ(0, hand.getUnicode().compare("\u0020\u0041\u2660\u0020\u0020\u003F\u003F\u0020\u0031\u0030\u2663"));
+    ASSERT_EQ(0, hand.getUnicode().compare(UNICODE_ACE_STR UNICODE_SPADES_STR UNICODE_SPACE_STR
+                                           UNICODE_QUESTION_STR UNICODE_SPACE_STR
+                                           UNICODE_TEN_STR UNICODE_CLUBS_STR));
     hand.reveal();
     ASSERT_EQ(3, hand.size());
-    ASSERT_EQ(0, hand.getUnicode().compare("\u0020\u0041\u2660\u0020\u0020\u0041\u2660\u0020\u0031\u0030\u2663"));
+    ASSERT_EQ(0, hand.getUnicode().compare(UNICODE_ACE_STR UNICODE_SPADES_STR UNICODE_SPACE_STR
+                                           UNICODE_ACE_STR UNICODE_SPADES_STR UNICODE_SPACE_STR
+                                           UNICODE_TEN_STR UNICODE_CLUBS_STR));
     delete firstCard_p;
     delete secondCard_p;
     delete thirdCard_p;
