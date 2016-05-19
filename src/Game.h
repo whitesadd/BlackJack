@@ -45,6 +45,7 @@ private:
     void dealCardUntilValue(Hand* hand_p, unsigned short limit);
     void dealCard(Hand* hand_p, bool facingUp = Card::FACING_UP);
     void printGame();
+    void printWinner();
 };
 
 #endif /* GAME_H_ */

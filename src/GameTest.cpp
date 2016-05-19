@@ -52,7 +52,6 @@ TEST_F(GameTest, CheckDealUntilLimitWithAce) {
     ASSERT_EQ(2, game._deck_p->size());
 }
 
-// Test Game with stubbed decks
 TEST_F(GameTest, TestGameNoAcesHouseWins) {
     cards_p->push_back(new Card(Card::TWO, Card::SPADES)); // card to Player, 2
     cards_p->push_back(new Card(Card::JACK, Card::CLUBS)); // card to Dealer, 10
@@ -86,7 +85,6 @@ TEST_F(GameTest, TestGameNoAcesHouseWins) {
                                                         UNICODE_SEVEN_STR UNICODE_DIAMONDS_STR));
 }
 
-// Test Game with stubbed decks
 TEST_F(GameTest, TestGameNoAcesPlayerWins) {
     cards_p->push_back(new Card(Card::TWO, Card::SPADES)); // card to Player, 2
     cards_p->push_back(new Card(Card::JACK, Card::CLUBS)); // card to Dealer, 10
@@ -114,4 +112,23 @@ TEST_F(GameTest, TestGameNoAcesPlayerWins) {
                                                         UNICODE_NINE_STR  UNICODE_CLUBS_STR));
     ASSERT_EQ(0, game._dealersHand.getUnicode().compare(UNICODE_QUESTION_STR UNICODE_SPACE_STR
                                                         UNICODE_SEVEN_STR UNICODE_DIAMONDS_STR));
+}
+
+TEST_F(GameTest, TestGamePlayerWinsOnDirect21) {
+    cards_p->push_back(new Card(Card::TEN, Card::SPADES)); // card to Player
+    cards_p->push_back(new Card(Card::JACK, Card::CLUBS)); // card to Dealer
+    cards_p->push_back(new Card(Card::ACE, Card::HEARTS)); // card to Player
+    cards_p->push_back(new Card(Card::ACE, Card::DIAMONDS)); // card to Dealer
+
+    UserInterfaceMock userInterfaceMock;
+    Game game(new DecksStub(cards_p), &userInterfaceMock);
+
+    EXPECT_CALL(userInterfaceMock, getPlayerMove())
+            .Times(1)
+            .WillOnce(Return('H'));
+    game.run();
+
+    ASSERT_EQ(game.houseWins(), false);
+    ASSERT_EQ(game.playerWins(), true);
+
 }

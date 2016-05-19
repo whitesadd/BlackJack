@@ -43,26 +43,37 @@ void Game::run() {
         printGame();
     }
 
-    if (_playersHand.isBusted()) return;
+    if (!_playersHand.isBusted()) {
+        _dealersHand.reveal();
+        printGame();
 
-    _dealersHand.reveal();
-    printGame();
-
-    dealCardToDealerUntilValue(Game::DEALER_STOP_VALUE);
-    printGame();
+        dealCardToDealerUntilValue(Game::DEALER_STOP_VALUE);
+        printGame();
+    }
+    printWinner();
 }
 
 bool Game::houseWins() {
-    if (_playersHand.isBusted()) return true;
-    if (_dealersHand.isBusted()) return false;
-    if (_dealersHand.getValue() >= _playersHand.getValue()) return true;
+    if (_playersHand.isBusted())
+        return true;
+    if (_dealersHand.isBusted())
+        return false;
+    if (_playersHand.size() == 2 && _playersHand.getValue() == 21)
+        return false;
+    if (_dealersHand.getValue() >= _playersHand.getValue())
+        return true;
     return false;
 }
 
 bool Game::playerWins() {
-    if (_playersHand.isBusted()) return false;
-    if (_dealersHand.isBusted()) return true;
-    if (_dealersHand.getValue() >= _playersHand.getValue()) return false;
+    if (_playersHand.isBusted())
+        return false;
+    if (_dealersHand.isBusted())
+        return true;
+    if (_playersHand.size() == 2 && _playersHand.getValue() == 21)
+        return true;
+    if (_dealersHand.getValue() >= _playersHand.getValue())
+        return false;
     return true;
 }
 
@@ -108,5 +119,14 @@ void Game::printGame() {
     std::cout << "Player: " << _playersHand.getUnicode();
     if (_playersHand.isBusted()) std::cout << " BUSTED";
     std::cout << std::endl << std::endl;
+}
+
+void Game::printWinner() {
+    if (houseWins()) {
+        std::cout << "House Wins!" << std::endl;
+    }
+    else if (playerWins()) {
+        std::cout << "Player Wins!" << std::endl;
+    }
 }
 
