@@ -130,5 +130,27 @@ TEST_F(GameTest, TestGamePlayerWinsOnDirect21) {
 
     ASSERT_EQ(game.houseWins(), false);
     ASSERT_EQ(game.playerWins(), true);
+}
 
+TEST_F(GameTest, TestGameHouseWinsOnDraw) {
+    cards_p->push_back(new Card(Card::FOUR, Card::SPADES)); // card to Player
+    cards_p->push_back(new Card(Card::SEVEN, Card::CLUBS)); // card to Dealer
+    cards_p->push_back(new Card(Card::TWO, Card::HEARTS)); // card to Player
+    cards_p->push_back(new Card(Card::NINE, Card::DIAMONDS)); // card to Dealer
+    cards_p->push_back(new Card(Card::EIGHT, Card::SPADES)); // card to Player
+    cards_p->push_back(new Card(Card::FIVE, Card::CLUBS)); // card to Player - Stop.
+    cards_p->push_back(new Card(Card::THREE, Card::CLUBS)); // card to Dealer - Stop - House Wins.
+
+    UserInterfaceMock userInterfaceMock;
+    Game game(new DecksStub(cards_p), &userInterfaceMock);
+
+    EXPECT_CALL(userInterfaceMock, getPlayerMove())
+            .Times(3)
+            .WillOnce(Return('D'))
+            .WillOnce(Return('D'))
+            .WillOnce(Return('H'));
+    game.run();
+
+    ASSERT_EQ(game.houseWins(), true);
+    ASSERT_EQ(game.playerWins(), false);
 }
