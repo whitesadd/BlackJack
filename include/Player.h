@@ -16,6 +16,9 @@ public:
     Player();
     virtual ~Player();
     int getNoOfHands();
+    void splitHand(std::list<Hand>::iterator& it,
+                   Card* card0_p,
+                   Card* card1_p);
 
     std::list<Hand> hands;
 };

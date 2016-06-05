@@ -93,8 +93,11 @@ bool Hand::isPair() {
         return false;
     }
 
-    if ((*this)[0]->getValues().firstValue !=
-            (*this)[1]->getValues().firstValue) {
+    Card* card1_p = this->operator[](0);
+    Card* card2_p = this->operator[](1);
+
+    if (card1_p->getValues().firstValue !=
+            card2_p->getValues().firstValue) {
         return false;
     }
 
