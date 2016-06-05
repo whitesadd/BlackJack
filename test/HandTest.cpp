@@ -16,17 +16,20 @@ TEST(HandTest, AddCardToHand) {
     hand.addCard(firstCard_p);
     ASSERT_EQ(1, hand.size());
     ASSERT_EQ(0, hand.getUnicode().compare(UNICODE_ACE_STR UNICODE_SPADES_STR));
+    ASSERT_FALSE(hand.isPair());
     Card* secondCard_p = new Card(Card::ACE, Card::SPADES, Card::FACING_DOWN);
     hand.addCard(secondCard_p);
     ASSERT_EQ(2, hand.size());
     ASSERT_EQ(0, hand.getUnicode().compare(UNICODE_ACE_STR UNICODE_SPADES_STR UNICODE_SPACE_STR
                                            UNICODE_QUESTION_STR));
+    ASSERT_TRUE(hand.isPair());
     Card* thirdCard_p = new Card(Card::TEN, Card::CLUBS, Card::FACING_UP);
     hand.addCard(thirdCard_p);
     ASSERT_EQ(3, hand.size());
     ASSERT_EQ(0, hand.getUnicode().compare(UNICODE_ACE_STR UNICODE_SPADES_STR UNICODE_SPACE_STR
                                            UNICODE_QUESTION_STR UNICODE_SPACE_STR
                                            UNICODE_TEN_STR UNICODE_CLUBS_STR));
+    ASSERT_FALSE(hand.isPair());
     hand.reveal();
     ASSERT_EQ(3, hand.size());
     ASSERT_EQ(0, hand.getUnicode().compare(UNICODE_ACE_STR UNICODE_SPADES_STR UNICODE_SPACE_STR
@@ -43,6 +46,7 @@ TEST(HandTest, EvalSingleHandValues) {
     handValues_p = hand.getValues();
     ASSERT_EQ(1, handValues_p->size());
     ASSERT_EQ(0, handValues_p->front());
+    ASSERT_FALSE(hand.isPair());
     hand.addCard(new Card(Card::TEN, Card::CLUBS));
     handValues_p = hand.getValues();
     ASSERT_EQ(1, handValues_p->size());
@@ -51,10 +55,12 @@ TEST(HandTest, EvalSingleHandValues) {
     handValues_p = hand.getValues();
     ASSERT_EQ(1, handValues_p->size());
     ASSERT_EQ(20, handValues_p->front());
+    ASSERT_TRUE(hand.isPair());
     hand.addCard(new Card(Card::TEN, Card::CLUBS));
     handValues_p = hand.getValues();
     ASSERT_EQ(1, handValues_p->size());
     ASSERT_EQ(30, handValues_p->front());
+    ASSERT_FALSE(hand.isPair());
 }
 
 
@@ -89,15 +95,19 @@ TEST(HandTest, CheckBustedAndValueWithoutAce) {
     hand.addCard(new Card(Card::TWO, Card::CLUBS));
     ASSERT_FALSE(hand.isBusted());
     ASSERT_EQ(2, hand.getValue());
+    ASSERT_FALSE(hand.isPair());
     hand.addCard(new Card(Card::KING, Card::DIAMONDS));
     ASSERT_FALSE(hand.isBusted());
     ASSERT_EQ(12, hand.getValue());
+    ASSERT_FALSE(hand.isPair());
     hand.addCard(new Card(Card::SEVEN, Card::DIAMONDS));
     ASSERT_FALSE(hand.isBusted());
     ASSERT_EQ(19, hand.getValue());
+    ASSERT_FALSE(hand.isPair());
     hand.addCard(new Card(Card::FOUR, Card::SPADES));
     ASSERT_TRUE(hand.isBusted());
     ASSERT_EQ(23, hand.getValue());
+    ASSERT_FALSE(hand.isPair());
 }
 
 TEST(HandTest, CheckBustedAndValueWithtAce) {
@@ -105,14 +115,17 @@ TEST(HandTest, CheckBustedAndValueWithtAce) {
     hand.addCard(new Card(Card::ACE, Card::CLUBS));
     ASSERT_FALSE(hand.isBusted());
     ASSERT_EQ(11, hand.getValue());
+    ASSERT_FALSE(hand.isPair());
     hand.addCard(new Card(Card::KING, Card::DIAMONDS));
     ASSERT_FALSE(hand.isBusted());
     ASSERT_EQ(21, hand.getValue());
+    ASSERT_FALSE(hand.isPair());
     hand.addCard(new Card(Card::SEVEN, Card::DIAMONDS));
     ASSERT_FALSE(hand.isBusted());
     ASSERT_EQ(18, hand.getValue());
+    ASSERT_FALSE(hand.isPair());
     hand.addCard(new Card(Card::FOUR, Card::SPADES));
     ASSERT_TRUE(hand.isBusted());
     ASSERT_EQ(22, hand.getValue());
+    ASSERT_FALSE(hand.isPair());
 }
-

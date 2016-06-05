@@ -15,6 +15,7 @@
 #define UNICODE_SPACE_STR        "\u0020"
 
 class Hand : public std::vector<Card *> {
+
 public:
     Hand();
     ~Hand();
@@ -24,6 +25,7 @@ public:
     std::list<unsigned short> const * getValues();
     unsigned short getValue();
     bool isBusted();
+    bool isPair();
 
     static const unsigned short HIDDEN_VALUE = USHRT_MAX;
 

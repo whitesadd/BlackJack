@@ -87,3 +87,16 @@ unsigned short Hand::getValue() {
         it--;
     }
 }
+
+bool Hand::isPair() {
+    if (size() != 2) {
+        return false;
+    }
+
+    if ((*this)[0]->getValues().firstValue !=
+            (*this)[1]->getValues().firstValue) {
+        return false;
+    }
+
+    return true;
+}

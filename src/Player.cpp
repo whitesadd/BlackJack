@@ -6,13 +6,17 @@
  */
 
 #include "Player.h"
+#include <iostream>
 
 Player::Player() {
-    // TODO Auto-generated constructor stub
-
+    Hand* hand_p = new Hand;
+    hands.push_front(*hand_p);
 }
 
 Player::~Player() {
-    // TODO Auto-generated destructor stub
 }
 
+
+int Player::getNoOfHands() {
+    return hands.size();
+}
