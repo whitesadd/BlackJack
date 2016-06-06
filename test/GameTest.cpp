@@ -34,8 +34,8 @@ TEST_F(GameTest, CheckDealUntilLimitWithoutAce) {
     cards_p->push_back(new Card(Card::SEVEN, Card::DIAMONDS));
     Game game(new DecksStub(cards_p));
     game.dealCardToPlayerUntilValue(18);
-    ASSERT_EQ(1, game._playersHand.getValues()->size());
-    ASSERT_EQ(18, game._playersHand.getValues()->front());
+    ASSERT_EQ(1, game._playersHands[0].getValues()->size());
+    ASSERT_EQ(18, game._playersHands[0].getValues()->front());
     ASSERT_EQ(1, game._deck_p->size());
 }
 
@@ -46,9 +46,9 @@ TEST_F(GameTest, CheckDealUntilLimitWithAce) {
     cards_p->push_back(new Card(Card::SEVEN, Card::DIAMONDS));
     Game game(new DecksStub(cards_p));
     game.dealCardToPlayerUntilValue(18);
-    ASSERT_EQ(2, game._playersHand.getValues()->size());
-    ASSERT_EQ(11, game._playersHand.getValues()->front());
-    ASSERT_EQ(21, game._playersHand.getValues()->back());
+    ASSERT_EQ(2, game._playersHands[0].getValues()->size());
+    ASSERT_EQ(11, game._playersHands[0].getValues()->front());
+    ASSERT_EQ(21, game._playersHands[0].getValues()->back());
     ASSERT_EQ(2, game._deck_p->size());
 }
 
@@ -81,10 +81,10 @@ TEST_F(GameTest, TestGameNoAcesHouseWins) {
     ASSERT_EQ(game.houseWins(), false);
     ASSERT_EQ(game.playerWins(), true);
     ASSERT_EQ(1, game._deck_p->size());
-    ASSERT_EQ(0, game._playersHand.getUnicode().compare(UNICODE_TWO_STR   UNICODE_SPADES_STR   UNICODE_SPACE_STR
-                                                        UNICODE_KING_STR  UNICODE_HEARTS_STR   UNICODE_SPACE_STR
-                                                        UNICODE_THREE_STR UNICODE_DIAMONDS_STR UNICODE_SPACE_STR
-                                                        UNICODE_THREE_STR UNICODE_CLUBS_STR));
+    ASSERT_EQ(0, game._playersHands[0].getUnicode().compare(UNICODE_TWO_STR   UNICODE_SPADES_STR   UNICODE_SPACE_STR
+                                                            UNICODE_KING_STR  UNICODE_HEARTS_STR   UNICODE_SPACE_STR
+                                                            UNICODE_THREE_STR UNICODE_DIAMONDS_STR UNICODE_SPACE_STR
+                                                            UNICODE_THREE_STR UNICODE_CLUBS_STR));
     ASSERT_EQ(0, game._dealersHand.getUnicode().compare(UNICODE_JACK_STR  UNICODE_CLUBS_STR    UNICODE_SPACE_STR
                                                         UNICODE_SEVEN_STR UNICODE_DIAMONDS_STR));
 }
@@ -114,10 +114,10 @@ TEST_F(GameTest, TestGameNoAcesPlayerWins) {
     ASSERT_EQ(game.houseWins(), true);
     ASSERT_EQ(game.playerWins(), false);
     ASSERT_EQ(1, game._deck_p->size());
-    ASSERT_EQ(0, game._playersHand.getUnicode().compare(UNICODE_TWO_STR   UNICODE_SPADES_STR   UNICODE_SPACE_STR
-                                                        UNICODE_KING_STR  UNICODE_HEARTS_STR   UNICODE_SPACE_STR
-                                                        UNICODE_THREE_STR UNICODE_DIAMONDS_STR UNICODE_SPACE_STR
-                                                        UNICODE_NINE_STR  UNICODE_CLUBS_STR));
+    ASSERT_EQ(0, game._playersHands[0].getUnicode().compare(UNICODE_TWO_STR   UNICODE_SPADES_STR   UNICODE_SPACE_STR
+                                                            UNICODE_KING_STR  UNICODE_HEARTS_STR   UNICODE_SPACE_STR
+                                                            UNICODE_THREE_STR UNICODE_DIAMONDS_STR UNICODE_SPACE_STR
+                                                            UNICODE_NINE_STR  UNICODE_CLUBS_STR));
     ASSERT_EQ(0, game._dealersHand.getUnicode().compare(UNICODE_QUESTION_STR UNICODE_SPACE_STR
                                                         UNICODE_SEVEN_STR UNICODE_DIAMONDS_STR));
 }

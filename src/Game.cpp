@@ -13,15 +13,27 @@
 
 Game::Game() :
         _deck_p(new DecksImp(4)),
-        _userInterface_p(new UserInterfaceImp()) {}
+        _userInterface_p(new UserInterfaceImp()) {
+    noOfPlayers = 1;
+    Hand* hand_p = new Hand;
+    _playersHands.push_back(*hand_p);
+}
 
 Game::Game(Decks* decks_p) :
         _deck_p(decks_p),
-        _userInterface_p(new UserInterfaceImp()) {}
+        _userInterface_p(new UserInterfaceImp()) {
+    noOfPlayers = 1;
+    Hand* hand_p = new Hand;
+    _playersHands.push_back(*hand_p);
+}
 
 Game::Game(Decks* decks_p, UserInterface* userInterface_p) :
         _deck_p(decks_p),
-        _userInterface_p(userInterface_p) {}
+        _userInterface_p(userInterface_p) {
+    noOfPlayers = 1;
+    Hand* hand_p = new Hand;
+    _playersHands.push_back(*hand_p);
+}
 
 Game::~Game() {
     delete _deck_p;
@@ -29,12 +41,11 @@ Game::~Game() {
 
 void Game::run() {
 
-    int noOfPlayers = 0;
     std::cout << std::endl;
-    while (noOfPlayers <= 0) {
+    do {
         std::cout << "How many players (1 - 7)? ";
         noOfPlayers = _userInterface_p->getNoOfPlayers();
-    }
+    } while (noOfPlayers <= 0);
     std::cout << std::endl;
 
     dealCardToPlayer();
@@ -43,7 +54,7 @@ void Game::run() {
     dealCardToDealer();
     printGame();
 
-    while (!_playersHand.isBusted()) {
+    while (!_playersHands[0].isBusted()) {
         std::cout << "Select Draw (D) or Hold (H): ";
         if (_userInterface_p->getPlayerMove() == 'H')
             break;
@@ -51,7 +62,7 @@ void Game::run() {
         printGame();
     }
 
-    if (!_playersHand.isBusted()) {
+    if (!_playersHands[0].isBusted()) {
         _dealersHand.reveal();
         printGame();
 
@@ -62,32 +73,32 @@ void Game::run() {
 }
 
 bool Game::houseWins() {
-    if (_playersHand.isBusted())
+    if (_playersHands[0].isBusted())
         return true;
     if (_dealersHand.isBusted())
         return false;
-    if (_playersHand.size() == 2 && _playersHand.getValue() == 21)
+    if (_playersHands[0].size() == 2 && _playersHands[0].getValue() == 21)
         return false;
-    if (_dealersHand.getValue() >= _playersHand.getValue())
+    if (_dealersHand.getValue() >= _playersHands[0].getValue())
         return true;
     return false;
 }
 
 bool Game::playerWins() {
-    if (_playersHand.isBusted())
+    if (_playersHands[0].isBusted())
         return false;
     if (_dealersHand.isBusted())
         return true;
-    if (_playersHand.size() == 2 && _playersHand.getValue() == 21)
+    if (_playersHands[0].size() == 2 && _playersHands[0].getValue() == 21)
         return true;
-    if (_dealersHand.getValue() >= _playersHand.getValue())
+    if (_dealersHand.getValue() >= _playersHands[0].getValue())
         return false;
     return true;
 }
 
 
 void Game::dealCardToPlayer(bool facingUp) {
-    dealCard(&_playersHand, facingUp);
+    dealCard(&(_playersHands[0]), facingUp);
 }
 
 void Game::dealCardToDealer(bool facingUp) {
@@ -106,7 +117,7 @@ void Game::dealCard(Hand* hand_p, bool facingUp) {
 
 
 void Game::dealCardToPlayerUntilValue(unsigned short limit) {
-    return dealCardUntilValue(&_playersHand, limit);
+    return dealCardUntilValue(&_playersHands[0], limit);
 }
 
 void Game::dealCardToDealerUntilValue(unsigned short limit) {
@@ -124,8 +135,8 @@ void Game::printGame() {
     std::cout << "Dealer: " << _dealersHand.getUnicode();
     if (_dealersHand.isBusted()) std::cout << " BUSTED";
     std::cout << std::endl;
-    std::cout << "Player: " << _playersHand.getUnicode();
-    if (_playersHand.isBusted()) std::cout << " BUSTED";
+    std::cout << "Player: " << _playersHands[0].getUnicode();
+    if (_playersHands[0].isBusted()) std::cout << " BUSTED";
     std::cout << std::endl << std::endl;
 }
 

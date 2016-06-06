@@ -36,7 +36,8 @@ private:
     Decks* _deck_p;
     UserInterface* _userInterface_p;
     Hand _dealersHand;
-    Hand _playersHand;
+    std::vector<Hand> _playersHands;
+    int noOfPlayers;
 
     void dealCardToPlayer(bool facingUp = Card::FACING_UP);
     void dealCardToDealer(bool facingUp = Card::FACING_UP);
