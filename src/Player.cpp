@@ -30,15 +30,18 @@ void Player::splitHand(std::list<Hand>::iterator& it,
 
     Hand* hand_p;
 
+    // Create new hand #0,...
     hand_p = new Hand;
     hand_p->addCard((*it)[0]);
     hand_p->addCard(card0_p);
     hands.insert(it, *hand_p);
 
+    // ...new hand #1,...
     hand_p = new Hand;
     hand_p->addCard((*it)[1]);
     hand_p->addCard(card1_p);
     hands.insert(it, *hand_p);
 
+    // ...and get rid of the old one.
     hands.erase(it);
 }

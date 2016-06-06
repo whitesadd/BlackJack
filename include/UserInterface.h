@@ -12,6 +12,7 @@ class UserInterface {
 public:
     virtual ~UserInterface() {}
     virtual char getPlayerMove() = 0;
+    virtual int getNoOfPlayers() = 0;
 };
 
 #endif /* USERINTERFACE_H_ */

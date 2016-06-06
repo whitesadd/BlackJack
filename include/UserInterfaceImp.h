@@ -13,6 +13,7 @@
 class UserInterfaceImp : public UserInterface {
 public:
     char getPlayerMove();
+    int getNoOfPlayers();
 };
 
 #endif /* USERINTERFACEIMP_H_ */

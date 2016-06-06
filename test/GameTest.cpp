@@ -67,6 +67,10 @@ TEST_F(GameTest, TestGameNoAcesHouseWins) {
     UserInterfaceMock userInterfaceMock;
     Game game(new DecksStub(cards_p), &userInterfaceMock);
 
+    EXPECT_CALL(userInterfaceMock, getNoOfPlayers())
+            .Times(1)
+            .WillOnce(Return(1));
+
     EXPECT_CALL(userInterfaceMock, getPlayerMove())
             .Times(3)
             .WillOnce(Return('D'))
@@ -97,6 +101,10 @@ TEST_F(GameTest, TestGameNoAcesPlayerWins) {
     UserInterfaceMock userInterfaceMock;
     Game game(new DecksStub(cards_p), &userInterfaceMock);
 
+    EXPECT_CALL(userInterfaceMock, getNoOfPlayers())
+            .Times(1)
+            .WillOnce(Return(1));
+
     EXPECT_CALL(userInterfaceMock, getPlayerMove())
             .Times(2)
             .WillOnce(Return('D'))
@@ -123,6 +131,10 @@ TEST_F(GameTest, TestGamePlayerWinsOnDirect21) {
     UserInterfaceMock userInterfaceMock;
     Game game(new DecksStub(cards_p), &userInterfaceMock);
 
+    EXPECT_CALL(userInterfaceMock, getNoOfPlayers())
+            .Times(1)
+            .WillOnce(Return(1));
+
     EXPECT_CALL(userInterfaceMock, getPlayerMove())
             .Times(1)
             .WillOnce(Return('H'));
@@ -143,6 +155,10 @@ TEST_F(GameTest, TestGameHouseWinsOnDraw) {
 
     UserInterfaceMock userInterfaceMock;
     Game game(new DecksStub(cards_p), &userInterfaceMock);
+
+    EXPECT_CALL(userInterfaceMock, getNoOfPlayers())
+            .Times(1)
+            .WillOnce(Return(1));
 
     EXPECT_CALL(userInterfaceMock, getPlayerMove())
             .Times(3)

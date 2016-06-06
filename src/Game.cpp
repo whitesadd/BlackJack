@@ -29,6 +29,14 @@ Game::~Game() {
 
 void Game::run() {
 
+    int noOfPlayers = 0;
+    std::cout << std::endl;
+    while (noOfPlayers <= 0) {
+        std::cout << "How many players (1 - 7)? ";
+        noOfPlayers = _userInterface_p->getNoOfPlayers();
+    }
+    std::cout << std::endl;
+
     dealCardToPlayer();
     dealCardToDealer(Card::FACING_DOWN);
     dealCardToPlayer();

@@ -14,6 +14,7 @@
 class UserInterfaceMock : public UserInterface {
 public:
     MOCK_METHOD0(getPlayerMove, char());
+    MOCK_METHOD0(getNoOfPlayers, int());
 };
 
 #endif /* USERINTERFACEMOCK_H_ */
