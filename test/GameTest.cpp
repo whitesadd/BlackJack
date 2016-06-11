@@ -172,17 +172,17 @@ TEST_F(GameTest, TestGameHouseWinsOnDraw) {
     ASSERT_EQ(game.playerWins(), false);
 }
 
-TEST_F(GameTest, TestGameMaxTwoPlayers) {
+TEST_F(GameTest, TestGameMaxSevenPlayers) {
     UserInterfaceMock userInterfaceMock;
     Game game(new DecksImp(1), &userInterfaceMock);
 
     EXPECT_CALL(userInterfaceMock, getNoOfPlayers())
             .Times(5)
-            .WillOnce(Return(3))
+            .WillOnce(Return(8))
             .WillOnce(Return(0))
-            .WillOnce(Return(6))
+            .WillOnce(Return(10))
             .WillOnce(Return(-3))
-            .WillOnce(Return(2));
+            .WillOnce(Return(7));
 
     EXPECT_CALL(userInterfaceMock, getPlayerMove())
             .Times(1)

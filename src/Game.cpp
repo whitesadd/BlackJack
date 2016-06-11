@@ -46,7 +46,7 @@ void Game::run() {
         std::cout << "How many players? ";
         noOfPlayers = _userInterface_p->getNoOfPlayers();
         std::cout << "You have selected " << noOfPlayers << " players." << std::endl;
-    } while (noOfPlayers <= 0 || 2 < noOfPlayers);
+    } while (noOfPlayers <= 0 || 7 < noOfPlayers);
     std::cout << std::endl;
 
     dealCardToPlayer();
