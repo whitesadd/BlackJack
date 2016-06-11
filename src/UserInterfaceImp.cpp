@@ -17,8 +17,8 @@ char UserInterfaceImp::getPlayerMove() {
 
 int UserInterfaceImp::getNoOfPlayers() {
 
-    char input;
+    int input;
     std::cin >> input;
-    return 1;
+    return input;
 }
 
