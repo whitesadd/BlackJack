@@ -10,8 +10,7 @@
 #include <cassert>
 
 Player::Player() {
-    Hand* hand_p = new Hand;
-    hands.push_front(*hand_p);
+    hands.push_front(Hand());
 }
 
 Player::~Player() {
@@ -28,19 +27,17 @@ void Player::splitHand(std::list<Hand>::iterator& it,
 
     assert(it->isPair());
 
-    Hand* hand_p;
-
     // Create new hand #0,...
-    hand_p = new Hand;
-    hand_p->addCard((*it)[0]);
-    hand_p->addCard(card0_p);
-    hands.insert(it, *hand_p);
+    Hand hand0;
+    hand0.addCard((*it)[0]);
+    hand0.addCard(card0_p);
+    hands.insert(it, hand0);
 
     // ...new hand #1,...
-    hand_p = new Hand;
-    hand_p->addCard((*it)[1]);
-    hand_p->addCard(card1_p);
-    hands.insert(it, *hand_p);
+    Hand hand1;
+    hand1.addCard((*it)[1]);
+    hand1.addCard(card1_p);
+    hands.insert(it, hand1);
 
     // ...and get rid of the old one.
     hands.erase(it);

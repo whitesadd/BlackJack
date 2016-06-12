@@ -15,24 +15,21 @@ Game::Game() :
         _deck_p(new DecksImp(4)),
         _userInterface_p(new UserInterfaceImp()) {
     noOfPlayers = 1;
-    Hand* hand_p = new Hand;
-    _playersHands.push_back(*hand_p);
+    _playersHands.push_back(Hand());
 }
 
 Game::Game(Decks* decks_p) :
         _deck_p(decks_p),
         _userInterface_p(new UserInterfaceImp()) {
     noOfPlayers = 1;
-    Hand* hand_p = new Hand;
-    _playersHands.push_back(*hand_p);
+    _playersHands.push_back(Hand());
 }
 
 Game::Game(Decks* decks_p, UserInterface* userInterface_p) :
         _deck_p(decks_p),
         _userInterface_p(userInterface_p) {
     noOfPlayers = 1;
-    Hand* hand_p = new Hand;
-    _playersHands.push_back(*hand_p);
+    _playersHands.push_back(Hand());
 }
 
 Game::~Game() {

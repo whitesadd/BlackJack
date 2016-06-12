@@ -25,11 +25,13 @@ TEST(PlayerTest, CheckSplit) {
 
     it = player.hands.begin();
     ASSERT_FALSE(it->isBusted());
+    ASSERT_EQ(2, it->size());
     ASSERT_EQ(17, it->getValue());
     ASSERT_FALSE(it->isPair());
 
     it++;
     ASSERT_FALSE(it->isBusted());
+    ASSERT_EQ(2, it->size());
     ASSERT_EQ(20, it->getValue());
     ASSERT_TRUE(it->isPair());
 }
