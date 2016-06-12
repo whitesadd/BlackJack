@@ -12,7 +12,10 @@
 
 TEST(HandTest, TestCopyConstruct) {
     Hand originalHand;
+    originalHand.addCard(new Card(Card::ACE, Card::SPADES));
+    originalHand.addCard(new Card(Card::JACK, Card::CLUBS));
     Hand copyHand = originalHand;
+    ASSERT_EQ(0, originalHand.getUnicode().compare(copyHand.getUnicode()));
 }
 
 TEST(HandTest, AddCardToHand) {
