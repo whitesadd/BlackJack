@@ -14,21 +14,18 @@
 Game::Game() :
         _deck_p(new DecksImp(4)),
         _userInterface_p(new UserInterfaceImp()) {
-    noOfPlayers = 1;
     _playersHands.push_back(Hand());
 }
 
 Game::Game(Decks* decks_p) :
         _deck_p(decks_p),
         _userInterface_p(new UserInterfaceImp()) {
-    noOfPlayers = 1;
     _playersHands.push_back(Hand());
 }
 
 Game::Game(Decks* decks_p, UserInterface* userInterface_p) :
         _deck_p(decks_p),
         _userInterface_p(userInterface_p) {
-    noOfPlayers = 1;
     _playersHands.push_back(Hand());
 }
 
@@ -38,6 +35,10 @@ Game::~Game() {
 
 void Game::run() {
 
+    int noOfPlayers = 0;
+    assert(_playersHands.size() == 1); // One player already created during
+                                       // construct time.
+
     std::cout << std::endl;
     do {
         std::cout << "How many players? ";
@@ -46,18 +47,29 @@ void Game::run() {
     } while (noOfPlayers <= 0 || 7 < noOfPlayers);
     std::cout << std::endl;
 
-    dealCardToPlayer();
+    for (int i = 1; i < noOfPlayers; i++) {
+        _playersHands.push_back(Hand());
+    }
+
+    for (int i = 0; i < noOfPlayers; i++) {
+        dealCardToPlayer(i);
+    }
     dealCardToDealer(Card::FACING_DOWN);
-    dealCardToPlayer();
+    for (int i = 0; i < noOfPlayers; i++) {
+        dealCardToPlayer(i);
+    }
+
     dealCardToDealer();
     printGame();
 
-    while (!_playersHands[0].isBusted()) {
-        std::cout << "Select Draw (D) or Hold (H): ";
-        if (_userInterface_p->getPlayerMove() == 'H')
-            break;
-        dealCardToPlayer();
-        printGame();
+    for (int i = 0; i < noOfPlayers; i++) {
+        while (!_playersHands[0].isBusted()) {
+            std::cout << "Select Draw (D) or Hold (H): ";
+            if (_userInterface_p->getPlayerMove() == 'H')
+                break;
+            dealCardToPlayer(i);
+            printGame();
+        }
     }
 
     if (!_playersHands[0].isBusted()) {
@@ -95,8 +107,8 @@ bool Game::playerWins() {
 }
 
 
-void Game::dealCardToPlayer(bool facingUp) {
-    dealCard(&(_playersHands[0]), facingUp);
+void Game::dealCardToPlayer(int playerId, bool facingUp) {
+    dealCard(&(_playersHands[playerId]), facingUp);
 }
 
 void Game::dealCardToDealer(bool facingUp) {
@@ -115,7 +127,7 @@ void Game::dealCard(Hand* hand_p, bool facingUp) {
 
 
 void Game::dealCardToPlayerUntilValue(unsigned short limit) {
-    return dealCardUntilValue(&_playersHands[0], limit);
+    return dealCardUntilValue(&(_playersHands[0]), limit);
 }
 
 void Game::dealCardToDealerUntilValue(unsigned short limit) {
@@ -146,4 +158,3 @@ void Game::printWinner() {
         std::cout << "Player Wins!" << std::endl;
     }
 }
-

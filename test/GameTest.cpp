@@ -35,6 +35,7 @@ TEST_F(GameTest, CheckDealUntilLimitWithoutAce) {
     cards_p->push_back(new Card(Card::SEVEN, Card::DIAMONDS));
     Game game(new DecksStub(cards_p));
     game.dealCardToPlayerUntilValue(18);
+    ASSERT_EQ(1, game._playersHands.size());
     ASSERT_EQ(1, game._playersHands[0].getValues()->size());
     ASSERT_EQ(18, game._playersHands[0].getValues()->front());
     ASSERT_EQ(1, game._deck_p->size());
@@ -185,7 +186,13 @@ TEST_F(GameTest, TestGameMaxSevenPlayers) {
             .WillOnce(Return(7));
 
     EXPECT_CALL(userInterfaceMock, getPlayerMove())
-            .Times(1)
+            .Times(7)
+            .WillOnce(Return('H'))
+            .WillOnce(Return('H'))
+            .WillOnce(Return('H'))
+            .WillOnce(Return('H'))
+            .WillOnce(Return('H'))
+            .WillOnce(Return('H'))
             .WillOnce(Return('H'));
     game.run();
 }

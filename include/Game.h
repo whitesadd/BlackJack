@@ -37,9 +37,8 @@ private:
     UserInterface* _userInterface_p;
     Hand _dealersHand;
     std::vector<Hand> _playersHands;
-    int noOfPlayers;
 
-    void dealCardToPlayer(bool facingUp = Card::FACING_UP);
+    void dealCardToPlayer(int playerId, bool facingUp = Card::FACING_UP);
     void dealCardToDealer(bool facingUp = Card::FACING_UP);
     void dealCardToPlayerUntilValue(unsigned short limit);
     void dealCardToDealerUntilValue(unsigned short limit);
