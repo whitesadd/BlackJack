@@ -9,6 +9,12 @@
 #include "Hand.h"
 #include "Card.h"
 
+
+TEST(HandTest, TestCopyConstruct) {
+    Hand originalHand;
+    Hand copyHand = originalHand;
+}
+
 TEST(HandTest, AddCardToHand) {
     Hand hand;
     ASSERT_EQ(0, hand.getUnicode().compare(""));

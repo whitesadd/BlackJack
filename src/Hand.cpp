@@ -13,6 +13,19 @@ Hand::Hand() {
     _handValues_p = new std::list<unsigned short>(1,0);
 }
 
+// The Copy Construct
+Hand::Hand(const Hand& hand) {
+    _handValues_p = new std::list<unsigned short>(1,0);
+    *_handValues_p = *hand._handValues_p;
+
+    // Copy pointers to cards; do not construct new cards.
+    std::vector<Card *>::const_iterator it = hand.begin();
+    while (it != hand.end()) {
+        this->push_back(*it);
+        it++;
+    }
+}
+
 Hand::~Hand() {
     delete _handValues_p;
 }

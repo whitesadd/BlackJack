@@ -18,6 +18,7 @@ class Hand : public std::vector<Card *> {
 
 public:
     Hand();
+    Hand(const Hand& hand);
     ~Hand();
     void addCard(Card* card_p);
     void reveal();
